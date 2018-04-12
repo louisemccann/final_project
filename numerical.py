@@ -14,3 +14,17 @@ def tridiagonal_matrix(x, Ec=0.214, Ej=52, ng=0):
     vals, vectors = scipy.linalg.eigh_tridiagonal(diag, off_diag)
     vals = np.real(vals)
     return vals, vectors
+
+def plot_eigenvector(vector):
+    # create a heatmap plot of eigenvectors
+    plt.imshow(abs(vector))
+    plt.colorbar(orientation='vertical')
+    plt.xlabel("m")
+    plt.ylabel("n")
+    plt.title("Matrix plot of Eigenvectors")
+    plt.show()
+
+
+s = 100
+simple_vals, simple_vectors = tridiagonal_matrix(s)
+plot_eigenvector(simple_vectors)
