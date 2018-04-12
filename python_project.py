@@ -26,5 +26,6 @@ def plot_eigenvector(vector):
 
 
 s = 100
+matplotlib.rcParams['figure.figsize'] = (15, 8)
 simple_vals, simple_vectors = tridiagonal_matrix(s)
 plot_eigenvector(simple_vectors)
