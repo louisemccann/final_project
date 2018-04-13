@@ -31,7 +31,9 @@ def plot_eigenvector(vector):
 s = 40
 matplotlib.rcParams['figure.figsize'] = (15, 8)
 _, simple_vectors = tridiagonal_matrix(s)
-#plot_eigenvector(simple_vectors)
+
+
+# plot_eigenvector(simple_vectors)
 
 
 # -------------- analytical ----------------------------
@@ -58,28 +60,31 @@ def analytical_wavefunction(k, Ec=0.214, Ej=52, ng=0.0):
 
 a = analytical_wavefunction(1, 1, 1)
 # print(a)
-#plt.plot(np.arange(-np.pi, np.pi, 0.01), abs(a) ** 2)
-#plt.show()
+# plt.plot(np.arange(-np.pi, np.pi, 0.01), abs(a) ** 2)
+# plt.show()
 
 # ------------------------- compare methods ---------------------
 ej = 52.0
 simple_vals, _ = tridiagonal_matrix(s, ng=0.0)
-#plt.plot(np.real(simple_vals) / ej)
+# plt.plot(np.real(simple_vals) / ej)
 ana = np.array([analytical_energy(i, ng=0.0) for i in range(0, s)])
-#plt.plot(ana/ej)
+# plt.plot(ana/ej)
 mathematica = np.loadtxt("data.dat", dtype=float)
-#plt.plot(mathematica/ej)
-#plt.show()
+
+
+# plt.plot(mathematica/ej)
+# plt.show()
 
 
 # ---------------- koch method ----------------
 
-def k_funtion(m,ng=0.1):
-    k=0
+def k_funtion(m, ng=0.0):
+    k = 0
     l = -1.0
-    k = round((2 * ng + l/2.0) % 2,0) * (int(ng + (l * (-1) ** m) * ((m + 1) // 2.0)))
+    k = round((2 * ng + l / 2.0) % 2) * (round(ng + (l * (-1) ** m) * ((m + 1) // 2.0)))
     l = 1.0
-    k += round((2 * ng + l/2.0) % 2,0) * (int(ng + (l * (-1) ** m) * ((m + 1) // 2.0)))
+    k += round((2 * ng + l / 2.0) % 2) * (int(ng + (l * (-1) ** m) * ((m + 1) // 2.0)))
     return k
+
 
 t = [k_funtion(i) for i in range(0, 10)]
