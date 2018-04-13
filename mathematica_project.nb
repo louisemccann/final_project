@@ -1,0 +1,17 @@
+
+EC0 = 0.214; EJ0 = 52; ng0 = 0;
+
+
+
+Em[k0_] := Module[{k = k0}, EC = EC0; EJ = EJ0; NG = ng0;
+
+  				q = -2 EJ/EC;
+
+  				r = k + 1 - Mod[k + 1, 2] + 2 NG (-1)^k;
+
+  				(EC*4) MathieuCharacteristicA[r, q]];
+
+data:=Table[Em[x]/(2*EJ0), {x, 0, 40}];
+
+Export["C:\\Users\\Louise\\Documents\\project\\final_project\\data.dat",data ];
+
