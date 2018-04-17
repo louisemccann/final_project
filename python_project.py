@@ -66,19 +66,19 @@ a = analytical_wavefunction(1, 1, 1)
 # ------------------------- compare methods ---------------------
 ej = 52.0
 simple_vals, _ = tridiagonal_matrix(s, ng=0.0)
-# plt.plot(np.real(simple_vals) / ej)
+#plt.plot(np.real(simple_vals) / ej)
 ana = np.array([analytical_energy(i, ng=0.0) for i in range(0, s)])
-# plt.plot(ana/ej)
+#plt.plot(ana/ej)
 mathematica = np.loadtxt("data.dat", dtype=float)
 
 
-# plt.plot(mathematica/ej)
-# plt.show()
+#plt.plot(mathematica/ej)
+#plt.show()
 
 
 # ---------------- koch method ----------------
 
-def k_funtion(m, ng=0.0):
+def k_function(m, ng=0.0):
     k = 0
     l = -1.0
     k = round((2 * ng + l / 2.0) % 2) * (round(ng + (l * (-1) ** m) * ((m + 1) // 2.0)))
@@ -87,4 +87,9 @@ def k_funtion(m, ng=0.0):
     return k
 
 
-t = [k_funtion(i) for i in range(0, 10)]
+def em_koch(m, ng=0.0,Ec=0.214, Ej=52):
+    return Ec * scipy.special.mathieu_a(2, ng + k_function(m,ng)) * (-Ej/(2*Ec))
+
+koch_test = [em_koch(m) for m in range(1,40)]
+plt.plot(range(1,40),np.array(koch_test)/52.0)
+plt.show()
