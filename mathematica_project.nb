@@ -11,7 +11,13 @@ Em[k0_] := Module[{k = k0}, EC = EC0; EJ = EJ0; NG = ng0;
 
   				(EC*4) MathieuCharacteristicA[r, q]];
 
-data:=Table[Em[x]/(2*EJ0), {x, 0, 40}];
+data:=Table[Em[x]/(2*EJ0), {x, 0, 80}];
 
 Export["C:\\Users\\Louise\\Documents\\project\\final_project\\data.dat",data ];
 
+
+Emkoch[m0_] := Module[{m=m0},EC0; EJ = EJ0; NG = ng0;
+		k = (Round[Mod[2*ng + -1/2.0,2]] * Round[ng + (-1*(-1)^m) *Quotient[m+1,2]]) + (Round[Mod[2*ng + 1/2.0,2]] * Round[ng + (1*(-1)^m) *Quotient[m+1,2]]);
+    k];
+
+data2 := Table[Emkoch[x],{x,0,40}]
