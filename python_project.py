@@ -28,12 +28,12 @@ def plot_eigenvector(vector):
     plt.show()
 
 
-s = 40
+s = 80
 matplotlib.rcParams['figure.figsize'] = (15, 8)
 _, simple_vectors = tridiagonal_matrix(s)
 
 
-# plot_eigenvector(simple_vectors)
+#plot_eigenvector(simple_vectors)
 
 
 # -------------- analytical ----------------------------
@@ -49,7 +49,6 @@ def analytical_wavefunction(k, Ec=0.214, Ej=52, ng=0.0):
     Ek = analytical_energy(k, Ec, Ej, ng)
     const1 = int(4 * Ek / Ec)
     const2 = -2 * Ej / Ec
-    print(Ek, const1, const2)
     pi_range = np.arange(-np.pi, np.pi, 0.01)
     mathieu_c = np.array([scipy.special.mathieu_cem(const1, const2, theta / 2.0)[0] for theta in pi_range])
     mathieu_s = np.array([scipy.special.mathieu_sem(const1, const2, theta / 2.0)[0] for theta in pi_range])
@@ -66,15 +65,19 @@ a = analytical_wavefunction(1, 1, 1)
 # ------------------------- compare methods ---------------------
 ej = 52.0
 simple_vals, _ = tridiagonal_matrix(s, ng=0.0)
-#plt.plot(np.real(simple_vals) / ej)
-ana = np.array([analytical_energy(i, ng=0.0) for i in range(0, s)])
-#plt.plot(ana/ej)
+simple_vals= simple_vals/25.0
+plt.plot(np.real(simple_vals) / ej,label='simple vals')
+ana = np.array([analytical_energy(i, ng=0.0) for i in range(0, s)])/100.0
+plt.plot(ana/ej, label='analytical')
+
+
 mathematica = np.loadtxt("data.dat", dtype=float)
 
 
-#plt.plot(mathematica/ej)
-#plt.show()
-
+plt.plot(mathematica/ej, label='mathematica')
+#plt.savefig("test2.png",format='png')
+plt.legend()
+plt.show()
 
 # ---------------- koch method ----------------
 
@@ -88,8 +91,22 @@ def k_function(m, ng=0.0):
 
 
 def em_koch(m, ng=0.0,Ec=0.214, Ej=52):
-    return Ec * scipy.special.mathieu_a(2, ng + k_function(m,ng)) * (-Ej/(2*Ec))
+    return Ec * scipy.special.mathieu_a(2, ng + np.real(k_function(m,ng))) * (-Ej/(2*Ec))
 
+
+k_test = [k_function(m) for m in range(1,40)]
 koch_test = [em_koch(m) for m in range(1,40)]
-plt.plot(range(1,40),np.array(koch_test)/52.0)
+plt.plot(range(1,40),np.array(koch_test)/52.0, label='koch')
+#plt.savefig("test.png",format='png')
+#plt.show()
+
+t = np.loadtxt("data2.dat")
+plt.plot(t)
 plt.show()
+
+def koch_wavefunction(m, ng=0.0,Ec=0.214, Ej=52):
+    # finds the wavefunction according to koch paper
+    # for phi = -2pi to 2pi
+    return [(np.exp(1j *ng * phi)/np.sqrt(2.0)) * scipy.special.mathieu_cem(-2*(ng-k_function(m,ng)),-Ej/2*Ec,phi/2.0) for phi in np.arange(-2*np.pi, 2*np.pi, 0.1)]
+
+wave_test = koch_wavefunction(1)
