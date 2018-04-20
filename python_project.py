@@ -77,7 +77,7 @@ mathematica = np.loadtxt("data.dat", dtype=float)
 plt.plot(mathematica/ej, label='mathematica')
 #plt.savefig("test2.png",format='png')
 plt.legend()
-plt.show()
+#plt.show()
 
 # ---------------- koch method ----------------
 
@@ -104,9 +104,26 @@ t = np.loadtxt("data2.dat")
 plt.plot(t)
 plt.show()
 
-def koch_wavefunction(m, ng=0.0,Ec=0.214, Ej=52):
+def koch_wavefunction(m, ng=0.1,Ec=0.214, Ej=52):
     # finds the wavefunction according to koch paper
     # for phi = -2pi to 2pi
-    return [(np.exp(1j *ng * phi)/np.sqrt(2.0)) * scipy.special.mathieu_cem(-2*(ng-k_function(m,ng)),-Ej/2*Ec,phi/2.0) for phi in np.arange(-2*np.pi, 2*np.pi, 0.1)]
+    #for phi in :
+        #psi = np.exp(1j *ng * phi)/np.sqrt(2.0)
+        #mat = scipy.special.mathieu_cem(-2*(ng-k_function(m,ng)),-Ej/2*Ec,phi/2.0)[0]
+    r = -2*(ng-k_function(m,ng))
+    q = -Ej/2*Ec
+    return [(np.exp(1j *ng * phi)/np.sqrt(2.0))*scipy.special.mathieu_cem(int(r),q,phi/2.0)[0] for phi in np.arange(-2*np.pi, 2*np.pi, 0.1)]
 
-wave_test = koch_wavefunction(1)
+
+for m in np.arange(41,80,2):
+    wave_test = koch_wavefunction(m)
+    plt.plot(wave_test, label='%s' %m)
+plt.legend()
+plt.show()
+
+m=99
+wave_test = koch_wavefunction(m)
+plt.plot(wave_test, label='%s' %m)
+plt.legend()
+plt.show()
+
