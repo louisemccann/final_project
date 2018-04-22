@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import matplotlib
 import scipy.special
 import math
-
+matplotlib.rcParams['figure.figsize'] = (15, 10)
 
 # ---------- numerical -------------------
 def tridiagonal_matrix(x, Ec=0.214, Ej=52, ng=0.0):
@@ -18,23 +18,29 @@ def tridiagonal_matrix(x, Ec=0.214, Ej=52, ng=0.0):
     return vals, vectors
 
 
-def plot_eigenvector(vector):
+def plot_eigenvector(vector, m):
     # create a heatmap plot of eigenvectors
-    plt.imshow(abs(vector),extent=[0,40,-20,20])
+    matplotlib.rcParams['figure.figsize'] = (15, 15)
+    plt.imshow(abs(vector),extent=[0,m/2,-m/4,m/4])
     plt.colorbar(orientation='vertical')
     plt.xlabel("Matrix Element, m")
     plt.ylabel("Charge State, n")
     plt.title("Matrix plot of Eigenvectors")
-    plt.savefig("figs/matrix_plot_of_eigenvectors")
+    plt.savefig("figs/matrix_plot_of_eigenvectors.png")
     plt.show()
 
+def plot_eigenvalues(values,ej=52):
+    matplotlib.rcParams['figure.figsize'] = (15, 10)
+    plt.plot(np.real(values)[:40] / ej)
+    plt.xlabel("Matrix Element, m")
+    plt.ylabel("Em/Ej")
+    plt.savefig("figs/plot_of_eigenvalues.png")
+    plt.show()
 
 s = 80
-matplotlib.rcParams['figure.figsize'] = (15, 8)
-_, simple_vectors = tridiagonal_matrix(s)
-
-
-plot_eigenvector(simple_vectors)
+simple_vals, simple_vectors = tridiagonal_matrix(s)
+plot_eigenvector(simple_vectors, m=s)
+plot_eigenvalues(simple_vals)
 
 
 # -------------- analytical ----------------------------
@@ -64,32 +70,31 @@ a = analytical_wavefunction(1, 1, 1)
 # plt.show()
 
 # ------------------------- compare methods ---------------------
-ej = 52.0
-simple_vals, _ = tridiagonal_matrix(s, ng=0.0)
-simple_vals= simple_vals/25.0
-plt.plot(np.real(simple_vals) / ej,label='simple vals')
+
+def plot_analytical_energy(p_values, m_values, ej=52):
+    #plots mathematica and python analytical values
+    matplotlib.rcParams['figure.figsize'] = (15, 10)
+    plt.plot(np.real(p_values)[:40] / ej, label='Python')
+    plt.plot(m_values[:40] / ej, label='Mathematica')
+    plt.xlabel("Matrix Element, m")
+    plt.ylabel("Em/Ej")
+    plt.legend()
+    plt.savefig("figs/compare_python_mathematica.png")
+
 ana = np.array([analytical_energy(i, ng=0.0) for i in range(0, s)])/100.0
-plt.plot(ana/ej, label='analytical')
-
-
 mathematica = np.loadtxt("data.dat", dtype=float)
+plot_analytical_energy(ana,mathematica)
+plt.show()
 
-
-plt.plot(mathematica/ej, label='mathematica')
-#plt.savefig("test2.png",format='png')
-plt.legend()
-#plt.show()
 
 # ---------------- koch method ----------------
 
 def k_function(m, ng=0.0):
-    k = 0
     l = -1.0
     k = round((2 * ng + l / 2.0) % 2) * (round(ng + (l * (-1) ** m) * ((m + 1) // 2.0)))
     l = 1.0
     k += round((2 * ng + l / 2.0) % 2) * (int(ng + (l * (-1) ** m) * ((m + 1) // 2.0)))
     return k
-
 
 def em_koch(m, ng=0.0,Ec=0.214, Ej=52):
     return Ec * scipy.special.mathieu_a(2, ng + np.real(k_function(m,ng))) * (-Ej/(2*Ec))
