@@ -74,17 +74,29 @@ a = analytical_wavefunction(1, 1, 1)
 def plot_analytical_energy(p_values, m_values, ej=52):
     #plots mathematica and python analytical values
     matplotlib.rcParams['figure.figsize'] = (15, 10)
-    plt.plot(np.real(p_values)[:40] / ej, label='Python')
-    plt.plot(m_values[:40] / ej, label='Mathematica')
+    plt.plot(np.real(p_values) / ej, label='Python')
+    plt.plot(m_values/ ej, label='Mathematica')
     plt.xlabel("Matrix Element, m")
     plt.ylabel("Em/Ej")
     plt.legend()
-    plt.savefig("figs/compare_python_mathematica.png")
 
-ana = np.array([analytical_energy(i, ng=0.0) for i in range(0, s)])/100.0
-mathematica = np.loadtxt("data.dat", dtype=float)
+
+ana = np.array([analytical_energy(i, ng=0.000001) for i in np.arange(0, s)])
+mathematica = np.loadtxt("data_ng_nearly0.dat", dtype=float)
 plot_analytical_energy(ana,mathematica)
+plt.savefig("figs/compare_python_mathematica.png")
 plt.show()
+#^^ the python part of this graph is really weird?
+# it's kind of backwards
+# maybe don't use this
+# compare the python and mathematica functions using ng=0 exactly, comment that this is a special case
+
+ana = np.array([analytical_energy(i, ng=0.0) for i in np.arange(0, s)])
+mathematica = np.loadtxt("data_ng_0.dat", dtype=float)
+plot_analytical_energy(ana,mathematica)
+plt.savefig("figs/compare_python_mathematica_ng0.png")
+plt.show()
+
 
 
 # ---------------- koch method ----------------
