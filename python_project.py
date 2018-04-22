@@ -43,6 +43,7 @@ plot_eigenvector(simple_vectors, m=s)
 plot_eigenvalues(simple_vals)
 
 
+
 # -------------- analytical ----------------------------
 def analytical_energy(k, Ec=0.214, Ej=52, ng=0.0):
     q = -2 * Ej / Ec
@@ -81,7 +82,7 @@ def plot_analytical_energy(p_values, m_values, ej=52):
     plt.legend()
 
 
-ana = np.array([analytical_energy(i, ng=0.000001) for i in np.arange(0, s)])
+ana = np.array([analytical_energy(i, ng=1E-10) for i in np.arange(0, s)])
 mathematica = np.loadtxt("data_ng_nearly0.dat", dtype=float)
 plot_analytical_energy(ana,mathematica)
 plt.savefig("figs/compare_python_mathematica.png")
@@ -91,13 +92,26 @@ plt.show()
 # maybe don't use this
 # compare the python and mathematica functions using ng=0 exactly, comment that this is a special case
 
-ana = np.array([analytical_energy(i, ng=0.0) for i in np.arange(0, s)])
-mathematica = np.loadtxt("data_ng_0.dat", dtype=float)
-plot_analytical_energy(ana,mathematica)
+ana0 = np.array([analytical_energy(i, ng=0.0) for i in np.arange(0, s)])
+mathematica0 = np.loadtxt("data_ng_0.dat", dtype=float)
+plot_analytical_energy(ana0,mathematica0)
 plt.savefig("figs/compare_python_mathematica_ng0.png")
 plt.show()
 
-
+# compare mathematica and simple values
+ej=52
+matplotlib.rcParams['figure.figsize'] = (15, 8)
+fig,ax=plt.subplots(1,2)
+ax[0].plot(simple_vals[:40], label='Numerical')
+plt.xlabel("Matrix Element, m")
+plt.ylabel("Em/Ej")
+plt.legend()
+plt.plot(mathematica[:40]/16.0, label='Analytical', color='orange')
+plt.xlabel("Matrix Element, m")
+plt.ylabel("Em/Ej")
+plt.legend()
+plt.savefig("figs/compare_analytical_numerical.png")
+plt.show()
 
 # ---------------- koch method ----------------
 
@@ -118,9 +132,9 @@ plt.plot(range(1,40),np.array(koch_test)/52.0, label='koch')
 #plt.savefig("test.png",format='png')
 #plt.show()
 
-t = np.loadtxt("data2.dat")
-plt.plot(t)
-plt.show()
+#t = np.loadtxt("data2.dat")
+#plt.plot(t)
+#plt.show()
 
 def koch_wavefunction(m, ng=0.000001,Ec=0.214, Ej=52):
     # finds the wavefunction according to koch paper
