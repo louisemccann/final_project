@@ -20,11 +20,12 @@ def tridiagonal_matrix(x, Ec=0.214, Ej=52, ng=0.0):
 
 def plot_eigenvector(vector):
     # create a heatmap plot of eigenvectors
-    plt.imshow(abs(vector))
+    plt.imshow(abs(vector),extent=[0,40,-20,20])
     plt.colorbar(orientation='vertical')
-    plt.xlabel("m")
-    plt.ylabel("n")
+    plt.xlabel("Matrix Element, m")
+    plt.ylabel("Charge State, n")
     plt.title("Matrix plot of Eigenvectors")
+    plt.savefig("figs/matrix_plot_of_eigenvectors")
     plt.show()
 
 
@@ -33,7 +34,7 @@ matplotlib.rcParams['figure.figsize'] = (15, 8)
 _, simple_vectors = tridiagonal_matrix(s)
 
 
-#plot_eigenvector(simple_vectors)
+plot_eigenvector(simple_vectors)
 
 
 # -------------- analytical ----------------------------
@@ -104,26 +105,39 @@ t = np.loadtxt("data2.dat")
 plt.plot(t)
 plt.show()
 
-def koch_wavefunction(m, ng=0.1,Ec=0.214, Ej=52):
+def koch_wavefunction(m, ng=0.000001,Ec=0.214, Ej=52):
     # finds the wavefunction according to koch paper
     # for phi = -2pi to 2pi
     #for phi in :
         #psi = np.exp(1j *ng * phi)/np.sqrt(2.0)
         #mat = scipy.special.mathieu_cem(-2*(ng-k_function(m,ng)),-Ej/2*Ec,phi/2.0)[0]
     r = -2*(ng-k_function(m,ng))
+    print(m,k_function(m,ng),int(r))
     q = -Ej/2*Ec
-    return [(np.exp(1j *ng * phi)/np.sqrt(2.0))*scipy.special.mathieu_cem(int(r),q,phi/2.0)[0] for phi in np.arange(-2*np.pi, 2*np.pi, 0.1)]
+    return np.array([(np.exp(1j *ng * phi)/np.sqrt(2.0))*scipy.special.mathieu_cem(int(r),q,phi/2.0)[0] for phi in np.arange(-2*np.pi, 2*np.pi, 0.1)])
 
 
-for m in np.arange(41,80,2):
+for m in np.arange(41,80,1):
     wave_test = koch_wavefunction(m)
     plt.plot(wave_test, label='%s' %m)
 plt.legend()
 plt.show()
 
+for m in np.arange(41,80,1):
+    wave_test = koch_wavefunction(m)
+    prob = np.absolute(wave_test ** 2)
+    plt.plot(prob, label='%s' %m)
+plt.legend()
+plt.show()
+
+"""
 m=99
 wave_test = koch_wavefunction(m)
 plt.plot(wave_test, label='%s' %m)
 plt.legend()
 plt.show()
 
+prob = np.absolute(koch_wavefunction(41))**2
+plt.plot(prob)
+plt.show()
+"""
