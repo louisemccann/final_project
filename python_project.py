@@ -136,6 +136,7 @@ def em_koch(m, ng=0.0, Ec=0.214, Ej=52):
 k_test = [k_function(m) for m in range(1, 40)]
 koch_test = [em_koch(m, ng=0.0) for m in range(1, 40)]
 plt.plot(range(1, 40), np.array(koch_test) / 52.0, label='koch')
+plt.legend()
 plt.show()
 
 
@@ -150,22 +151,34 @@ def koch_wavefunction(m, ng=0.000001, Ec=0.214, Ej=52):
     # psi = np.exp(1j *ng * phi)/np.sqrt(2.0)
     # mat = scipy.special.mathieu_cem(-2*(ng-k_function(m,ng)),-Ej/2*Ec,phi/2.0)[0]
     r = -2 * (ng - k_function(m, ng))
-    print(m, k_function(m, ng), int(r))
+    #print(m, k_function(m, ng), int(r))
     q = -Ej / 2 * Ec
     return np.array(
-        [(np.exp(1j * ng * phi) / np.sqrt(2.0)) * scipy.special.mathieu_cem(int(r), q, phi / 2.0)[0] for phi in
+        [(np.exp(1j * ng * phi) / np.sqrt(2.0)) * scipy.special.mathieu_cem(int(abs(r)), q, phi / 2.0)[0] for phi in
          np.arange(-2 * np.pi, 2 * np.pi, 0.1)])
 
 
-for m in [1, 11, 21, 41, 51, 81]:
+for m in range(1,10):
     wave_test = koch_wavefunction(m)
     plt.plot(wave_test, label='%s' % m)
 plt.legend()
 plt.show()
 
-for m in [1, 11, 21, 41, 51, 81]:
-    wave_test = koch_wavefunction(m)
+for m in [1, 10, 20, 40, 50, 80]:
+    wave_test =koch_wavefunction(m)
     prob = np.absolute(wave_test ** 2)
     plt.plot(prob, label='%s' % m)
 plt.legend()
+plt.show()
+
+
+
+colorplt = np.array([koch_wavefunction(m) for m in range(80)])
+matplotlib.rcParams['figure.figsize'] = (15, 15)
+plt.imshow(np.real(colorplt))
+plt.colorbar(orientation='vertical')
+plt.xlabel("Matrix Element, m")
+plt.ylabel("Charge State, n")
+plt.title("Matrix plot of Eigenvectors")
+plt.savefig("figs/matrix_plot.png")
 plt.show()
