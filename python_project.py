@@ -123,20 +123,21 @@ plt.show()
 
 def k_function(m, ng=0.0):
     l = -1.0
-    k = round((2 * ng + l / 2.0) % 2) * (round(ng + (l * (-1) ** m) * ((m + 1) // 2.0)))
+    k = round((2 * ng + l / 2.0) % 2) * (round(ng) + (l * (-1) ** m) * ((m + 1) // 2.0))
     l = 1.0
-    k += round((2 * ng + l / 2.0) % 2) * (int(ng + (l * (-1) ** m) * ((m + 1) // 2.0)))
+    k += round((2 * ng + l / 2.0) % 2) * (round(ng) + (l * (-1) ** m) * ((m + 1) // 2.0))
     return k
 
 
 def em_koch(m, ng=0.0, Ec=0.214, Ej=52):
-    return Ec * scipy.special.mathieu_a(2, ng + np.real(k_function(m, ng))) * (-Ej / (2 * Ec))
+    return Ec * scipy.special.mathieu_a(2*(ng + abs(k_function(m, ng))),-Ej / (2 * Ec))
 
 
 k_test = [k_function(m) for m in range(1, 40)]
-koch_test = [em_koch(m, ng=0.0) for m in range(1, 40)]
+koch_test = [em_koch(m, ng=1E-10) for m in range(1, 40)]
 plt.plot(range(1, 40), np.array(koch_test) / 52.0, label='koch')
 plt.legend()
+plt.savefig('figs/koch.png')
 plt.show()
 
 
@@ -169,13 +170,14 @@ for m in [1, 10, 20, 40, 50, 80]:
     prob = np.absolute(wave_test ** 2)
     plt.plot(prob, label='%s' % m)
 plt.legend()
+plt.savefig("figs/wavefunctions.png")
 plt.show()
 
 
 
 colorplt = np.array([koch_wavefunction(m) for m in range(80)])
 matplotlib.rcParams['figure.figsize'] = (15, 15)
-plt.imshow(np.real(colorplt))
+plt.imshow(np.absolute(np.real(colorplt))**2)
 plt.colorbar(orientation='vertical')
 plt.xlabel("Matrix Element, m")
 plt.ylabel("Charge State, n")
