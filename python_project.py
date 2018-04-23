@@ -127,10 +127,9 @@ def em_koch(m, ng=0.0,Ec=0.214, Ej=52):
 
 
 k_test = [k_function(m) for m in range(1,40)]
-koch_test = [em_koch(m) for m in range(1,40)]
+koch_test = [em_koch(m,ng=1E-10) for m in range(1,40)]
 plt.plot(range(1,40),np.array(koch_test)/52.0, label='koch')
-#plt.savefig("test.png",format='png')
-#plt.show()
+plt.show()
 
 #t = np.loadtxt("data2.dat")
 #plt.plot(t)
@@ -148,27 +147,15 @@ def koch_wavefunction(m, ng=0.000001,Ec=0.214, Ej=52):
     return np.array([(np.exp(1j *ng * phi)/np.sqrt(2.0))*scipy.special.mathieu_cem(int(r),q,phi/2.0)[0] for phi in np.arange(-2*np.pi, 2*np.pi, 0.1)])
 
 
-for m in np.arange(41,80,1):
+for m in [1,11,21,41,51,81]:
     wave_test = koch_wavefunction(m)
     plt.plot(wave_test, label='%s' %m)
 plt.legend()
 plt.show()
 
-for m in np.arange(41,80,1):
+for m in [1,11,21,41,51,81]:
     wave_test = koch_wavefunction(m)
     prob = np.absolute(wave_test ** 2)
     plt.plot(prob, label='%s' %m)
 plt.legend()
 plt.show()
-
-"""
-m=99
-wave_test = koch_wavefunction(m)
-plt.plot(wave_test, label='%s' %m)
-plt.legend()
-plt.show()
-
-prob = np.absolute(koch_wavefunction(41))**2
-plt.plot(prob)
-plt.show()
-"""
