@@ -43,7 +43,6 @@ plot_eigenvector(simple_vectors, m=s)
 plot_eigenvalues(simple_vals)
 
 
-
 # -------------- analytical ----------------------------
 def analytical_energy(k, Ec=0.214, Ej=52, ng=0.0):
     q = -2 * Ej / Ec
@@ -51,7 +50,7 @@ def analytical_energy(k, Ec=0.214, Ej=52, ng=0.0):
     mat = 4 * Ec * scipy.special.mathieu_a(int(r), q)
     return mat
 
-
+# this needs more work. I don't think it's working at all. Probably should do in mathematica instead
 def analytical_wavefunction(k, Ec=0.214, Ej=52, ng=0.0):
     # generates a wavefunction between -pi and pi
     Ek = analytical_energy(k, Ec, Ej, ng)
@@ -80,7 +79,6 @@ def plot_analytical_energy(p_values, m_values, ej=52):
     plt.xlabel("Matrix Element, m")
     plt.ylabel("Em/Ej")
     plt.legend()
-
 
 ana = np.array([analytical_energy(i, ng=1E-10) for i in np.arange(0, s)])
 mathematica = np.loadtxt("data_ng_nearly0.dat", dtype=float)
@@ -138,7 +136,7 @@ plt.plot(range(1,40),np.array(koch_test)/52.0, label='koch')
 
 def koch_wavefunction(m, ng=0.000001,Ec=0.214, Ej=52):
     # finds the wavefunction according to koch paper
-    # for phi = -2pi to 2pi
+    # for phi = -2pi to 2pi`
     #for phi in :
         #psi = np.exp(1j *ng * phi)/np.sqrt(2.0)
         #mat = scipy.special.mathieu_cem(-2*(ng-k_function(m,ng)),-Ej/2*Ec,phi/2.0)[0]
