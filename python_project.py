@@ -3,6 +3,7 @@ import scipy.linalg
 import matplotlib.pyplot as plt
 import matplotlib
 import scipy.special
+import scipy.sparse
 import math
 
 matplotlib.rcParams['figure.figsize'] = (15, 10)
@@ -126,7 +127,7 @@ def k_function(m, ng=0.0):
     k = round((2 * ng + l / 2.0) % 2) * (round(ng) + (l * (-1) ** m) * ((m + 1) // 2.0))
     l = 1.0
     k += round((2 * ng + l / 2.0) % 2) * (round(ng) + (l * (-1) ** m) * ((m + 1) // 2.0))
-    return k
+    return int(k)
 
 
 def em_koch(m, ng=0.0, Ec=0.214, Ej=52):
@@ -174,7 +175,6 @@ plt.savefig("figs/wavefunctions.png")
 plt.show()
 
 
-
 colorplt = np.array([koch_wavefunction(m) for m in range(80)])
 matplotlib.rcParams['figure.figsize'] = (15, 15)
 plt.imshow(np.absolute(np.real(colorplt))**2)
@@ -184,3 +184,9 @@ plt.ylabel("Charge State, n")
 plt.title("Matrix plot of Eigenvectors")
 plt.savefig("figs/matrix_plot.png")
 plt.show()
+
+
+n = [0,1,0]
+charge = np.array([[-1,0,0],[0,0,0],[0,0,1]])
+n1 = [0,0,1]
+print(n1*charge*n)
