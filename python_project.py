@@ -185,6 +185,11 @@ plt.title("Matrix plot of Eigenvectors")
 plt.savefig("figs/matrix_plot.png")
 plt.show()
 
+mathematica = np.loadtxt("data2.dat", dtype=float)
+matplotlib.rcParams['figure.figsize'] = (15, 10)
+plt.plot(mathematica / ej, label='Mathematica')
+plt.savefig("figs/mathematica_koch.png")
+plt.show()
 
 n = [0,1,0]
 charge = np.array([[-1,0,0],[0,0,0],[0,0,1]])
