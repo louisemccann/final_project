@@ -191,7 +191,12 @@ plt.plot(mathematica / ej, label='Mathematica')
 plt.savefig("figs/mathematica_koch.png")
 plt.show()
 
-n = [0,1,0]
-charge = np.array([[-1,0,0],[0,0,0],[0,0,1]])
-n1 = [0,0,1]
-print(n1*charge*n)
+plt.close('all')
+f = []
+for m in range(10):
+    n = np.matrix(simple_vectors[m]).T
+    charge = np.diag(range(-40,40))
+    n1 = np.matrix(simple_vectors[m+1])
+    f1=np.matmul(np.matmul(n1,charge),n)
+    f.append(f1)
+plt.plot(f)
