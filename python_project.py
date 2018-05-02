@@ -7,7 +7,7 @@ import scipy.sparse
 import math
 
 matplotlib.rcParams['figure.figsize'] = (15, 10)
-
+matplotlib.rcParams.update({'font.size': 22})
 
 # ---------- numerical -------------------
 def tridiagonal_matrix(x, Ec=0.214, Ej=52, ng=0.0):
@@ -28,7 +28,6 @@ def plot_eigenvector(vector, m):
     plt.colorbar(orientation='vertical')
     plt.xlabel("Matrix Element, m")
     plt.ylabel("Charge State, n")
-    plt.title("Matrix plot of Eigenvectors")
     plt.savefig("figs/matrix_plot_of_eigenvectors.png")
     plt.show()
 
@@ -193,10 +192,27 @@ plt.show()
 
 plt.close('all')
 f = []
-for m in range(10):
+for m in range(80-1):
     n = np.matrix(simple_vectors[m]).T
     charge = np.diag(range(-40,40))
     n1 = np.matrix(simple_vectors[m+1])
     f1=np.matmul(np.matmul(n1,charge),n)
-    f.append(f1)
-plt.plot(f)
+    f.append(abs(f1.flat[0]))
+plt.plot(f[40:])
+plt.ylabel("coupling constant")
+plt.xlabel("matrix element")
+plt.savefig("figs/coupling.png")
+plt.show()
+
+f = []
+for m in range(1,40):
+    n = np.matrix(simple_vectors[m]).T
+    charge = np.diag(range(-40,40))
+    n1 = np.matrix(simple_vectors[80-m])
+    f1=np.matmul(np.matmul(n1,charge),n)
+    f.append(abs(f1.flat[0]))
+plt.plot(f[40:])
+plt.ylabel("coupling constant")
+plt.xlabel("matrix element")
+plt.savefig("figs/coupling_negative.png")
+plt.show()
