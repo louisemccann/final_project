@@ -27,6 +27,13 @@ Emkoch[m0_] := Module[{m=m0},EC0; EJ = EJ0; NG = ng0;
 data2 := Table[Emkoch[x],{x,0,40}];
 Export["C:\\Users\\Louise\\Documents\\project\\final_project\\data2.dat",data2 ];
 
+wavekoch[m0_] := Module[{m=m0},EC = EC0; EJ = EJ0; NG = ng0;
+				r = -2 * (NG- Emkoch[m0])
+				q = -EJ/2*EC
+				Table[Module[{},(Exp[I*NG*phi] / Sqrt[2]) * MathieuC[r,q,phi/2]], {phi, -2*Pi, 2*Pi}]];
+				
+wavekoch[1]
+Export["C:\\Users\\Louise\\Documents\\project\\final_project\\data3.dat",% ];
 
 
 n := {{1},{0},{0}};
