@@ -14,6 +14,7 @@
 \usepackage{physics}
 \usepackage{graphicx}
 \usepackage{amsmath}
+\usepackage{amssymb}
 
 
 
@@ -37,7 +38,21 @@ The superconducting circuit has many uses in modern physics. Its applications in
  \subsection{Superconducting Circuits}
 Superconductors are materials that, at low temperatures, have zero resistance to electronic fields. At these low temperatures, pairs of electrons become bound together in such a way that the energy is lower than that of a single electron. These are the charge carriers in a superconducting material. As a pair of electrons combined, the spin for a cooper pair is an integer and so they can behave like bosons. This effect allows multiple Cooper pairs to occupy the same energy level, unlike single electrons. Superconductors are ideal for qubit systems. They exhibit quantum behavior on a macroscopic level and the parameters of a superconducting may be modified by changing, for example, the capacitance. There are 3 types of superconducting qubits. The charge qubit, which is based on the number of cooper pairs on either side of a Josephson Junction. The flux qubit, which is based on the quantized magnetic flux inside a superconducting ring. Finally, the phase qubit, which is similar to the charge qubit but instead is based on the amplitude of quantum oscillations either side of the Josephson Junction. In this report, only the charge qubit is considered. 
 
+  \subsection{Motivation}
+
     \section{Method}
+    In this section, the theory describing the Josephson Junction and the methods of interpretating the quantum mechanics in such a way that can be replicated using programming techniques.
+
+   \subsection{Cooper Pair Box}
+   As mentioned in the introduction, a Cooper Pair Box is a qubit which utilises the Josephson Juntion. It is comprised of a superconducting island, which is connected to a superconducting reservoir via a Josephson Junction. It is then attached to a capacitor and a gate voltage source. The juntion has energy $E_J$ and capitance $C_J$. The box also has an additional energy, the Cooper Pair Coulomb energy:
+	\begin{equation}
+	E_C =  \frac{(2e)^2}{2C_\Sigma}
+	\end{equation}
+	where $C_\Sigma$ is the total capictance of the box. $E_C$ can also be thought of as the energy required to move one cooper pair across the junction. We can also consider a charge operator, $\boldsymbol{\hat{n}}$, which is associated with the excess number of cooper pairs on the island. The eigenstates of this operator are such that 
+	\begin{equation}
+	\boldsymbol{\hat{n}}\ket{\boldsymbol{n}} = \boldsymbol{n}\ket{\boldsymbol{n}},  \boldsymbol{n} \in \mathbb{Z}
+	\end{equation}
+
 
     \section{Results}
 
