@@ -16,6 +16,7 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 
+\newcommand*{\hatH}{\hat{\mathcal{H}}}
 
 
 % Document
@@ -39,6 +40,7 @@ The superconducting circuit has many uses in modern physics. Its applications in
 Superconductors are materials that, at low temperatures, have zero resistance to electronic fields. At these low temperatures, pairs of electrons become bound together in such a way that the energy is lower than that of a single electron. These are the charge carriers in a superconducting material. As a pair of electrons combined, the spin for a cooper pair is an integer and so they can behave like bosons. This effect allows multiple Cooper pairs to occupy the same energy level, unlike single electrons. Superconductors are ideal for qubit systems. They exhibit quantum behavior on a macroscopic level and the parameters of a superconducting may be modified by changing, for example, the capacitance. There are 3 types of superconducting qubits. The charge qubit, which is based on the number of cooper pairs on either side of a Josephson Junction. The flux qubit, which is based on the quantized magnetic flux inside a superconducting ring. Finally, the phase qubit, which is similar to the charge qubit but instead is based on the amplitude of quantum oscillations either side of the Josephson Junction. In this report, only the charge qubit is considered.
 
   \subsection{Motivation}
+Previous studies on the transmon have mainly focused on the system in either the ground state or first excited levels, both theoretically and experimentally. However, the behaviour of the transmon is not very well described for high states. In experimental work, a transmon is placed in a cavity and the system is driven by an electromagnetic wave. This system shows that for high power readouts, the transmon is ignored and largely has no effect on the overall system. In this investigation, the transmon will be simulated and the effect of a case shall be made for the behaviour of the transmon at high energy states.
 
     \section{Method}
     In this section, the theory describing the Josephson Junction and the methods of interpreting the quantum mechanics in such a way that can be replicated using programming techniques.
@@ -52,9 +54,9 @@ Superconductors are materials that, at low temperatures, have zero resistance to
 	\begin{equation}
 	\boldsymbol{\hat{n}}\ket{\boldsymbol{n}} = \boldsymbol{n}\ket{\boldsymbol{n}},  \boldsymbol{n} \in \mathbb{Z}
 	\end{equation}
-The total hamiltonian of the box consists of two different terms. The first is based on the charge operator and the second relates to the superconducting phase of the island, $\hat{\theta}$. The hamiltonian for the system is:
-	\begin{equation}
-	\hat{H} = E_C (\boldsymbol{\hat{n}} - n_g)^2 - E_J \cos{\hat{\theta}}
+The total Hamiltonian of the box consists of two different terms. The first is based on the charge operator and the second relates to the superconducting phase of the island, $\hat{\theta}$. The Hamiltonian for the system is:
+	\begin{equation} \label{hamil}
+	\hatH = E_C (\boldsymbol{\hat{n}} - n_g)^2 - E_J \cos{\hat{\theta}}
 	\end{equation}
 where $n_g$ is the reduced gate charge:
 	\begin{equation}
@@ -64,8 +66,11 @@ The charge operator is given in the phase representation as
 	\begin{equation}
 	\boldsymbol{\hat{n}} = \frac{1}{i} \frac{\delta}{\delta\theta}
 	\end{equation}
-
-
+Using this relation, the Hamiltonian can be quantised in the basis of charge eigenstates. This is the logical basis for the transmon system as $E_C \gg E_J$. The quantised Hamiltonian is:
+	\begin{equation}
+	\hatH = 4E_C (n-n_g)^2 \ket{n}\bra{n} - \frac{E_J}{2}(\sum_{n} \ket{n+1}\bra{n} + \ket{n}\bra{n+1})
+	\end{equation}
+An alternative method of representing the transmon system is to substitute the Hamiltonian from equation~\ref{hamil} into the Schr\"odinger equation and solve the equation analytically.
     \section{Results}
 
     \section{Discussion}
