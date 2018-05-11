@@ -71,6 +71,20 @@ Using this relation, the Hamiltonian can be quantised in the basis of charge eig
 	\hatH = 4E_C (n-n_g)^2 \ket{n}\bra{n} - \frac{E_J}{2}(\sum_{n} \ket{n+1}\bra{n} + \ket{n}\bra{n+1})
 	\end{equation}
 An alternative method of representing the transmon system is to substitute the Hamiltonian from equation~\ref{hamil} into the Schr\"odinger equation and solve the equation analytically.
+By considering the Hamiltonian in the charge basis it may be solved exactly using Mathieu equations. In this investigation, two different results for the energy of the system have been considered. The first is from Cottet and is given by:
+\begin{equation}
+E_k = E_C \mathcal{M}_A (k+1 - (k+1)[mod(2)] + 2n_g(-1)^k, -\frac{2E_J}{E_C})
+\end{equation}
+Where $k \in \mathbb{Z}$ and $\mathcal{M}_A$ gives the characteristic value, $a_r$ for even Mathieu funtions. However, this only applies to values of $n_g$ such that $0 < n_g < \frac{1}{2}$. The treatment given by Koch expands this such that all values of $n_g$ can be applied. This method also treats $k$ as a function, given by:
+\begin{equation}
+k(m, n_g) = \sum_{l=\pm 1} [int(2n_g + l/2)mod(2)] \times [int(n_g) + l(-1)^m ((m+1)div(2))]
+\end{equation}
+Where $int$ rounds to the closest integer, $mod$ represents the modulo, and $div$ gives the integer quotient.  The energy of state $m$ is then given by:
+\begin{equation}
+E_m(n_g) = E_C \mathcal{M}_A (2[n_g + k(m,n_g)],-\frac{E_J}{2E_C})
+\end{equation}
+
+
     \section{Results}
 
     \section{Discussion}
