@@ -15,13 +15,16 @@
 \usepackage{graphicx}
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{epstopdf}
 
 \newcommand*{\hatH}{\hat{\mathcal{H}}}
-
+\graphicspath{C:/Users/Louise/Documents/project/final_project/figs/}
 
 % Document
 \begin{document}
-
+\graphicspath{C:/Users/Louise/Documents/project/final_project/figs/}
     \maketitle
 
     \begin{abstract}
@@ -45,7 +48,7 @@ Previous studies on the transmon have mainly focused on the system in either the
     \section{Method}
     In this section, the theory describing the Josephson Junction and the methods of interpreting the quantum mechanics in such a way that can be replicated using programming techniques.
 
-   \subsection{Cooper Pair Box}
+   \subsection{Theory}
    As mentioned in the introduction, a Cooper Pair Box is a qubit which utilises the Josephson Junction. It is comprised of a superconducting island, which is connected to a superconducting reservoir via a Josephson Junction. It is then attached to a capacitor and a gate voltage source. The junction has energy $E_J$ and capacitance $C_J$. The box also has an additional energy, the Cooper Pair Coulomb energy:
 	\begin{equation}
 	E_C =  \frac{(2e)^2}{2C_\Sigma}
@@ -75,7 +78,7 @@ By considering the Hamiltonian in the charge basis it may be solved exactly usin
 \begin{equation}
 E_k = E_C \mathcal{M}_A (k+1 - (k+1)[mod(2)] + 2n_g(-1)^k, -\frac{2E_J}{E_C})
 \end{equation}
-Where $k \in \mathbb{Z}$ and $\mathcal{M}_A$ gives the characteristic value, $a_r$ for even Mathieu funtions. However, this only applies to values of $n_g$ such that $0 < n_g < \frac{1}{2}$. The treatment given by Koch expands this such that all values of $n_g$ can be applied. This method also treats $k$ as a function, given by:
+Where $k \in \mathbb{Z}$ and $\mathcal{M}_A$ gives the characteristic value, $a_r$ for even Mathieu functions. However, this only applies to values of $n_g$ such that $0 < n_g < \frac{1}{2}$. The treatment given by Koch expands this such that all values of $n_g$ can be applied. This method also treats $k$ as a function, given by:
 \begin{equation}
 k(m, n_g) = \sum_{l=\pm 1} [int(2n_g + l/2)mod(2)] \times [int(n_g) + l(-1)^m ((m+1)div(2))]
 \end{equation}
@@ -84,8 +87,32 @@ Where $int$ rounds to the closest integer, $mod$ represents the modulo, and $div
 E_m(n_g) = E_C \mathcal{M}_A (2[n_g + k(m,n_g)],-\frac{E_J}{2E_C})
 \end{equation}
 
-
     \section{Results}
+	\subsection{Numerical Approach}
+	
+
+
+	\includegraphics[width=\linewidth]{C:/Users/Louise/Documents/project/final_project/figs/plotofeigenvalues.png}
+	\label{fig:graph2}
+
+\begin{figure}
+\centering
+\begin{subfigure}{.5\linetwidth}
+	\centering
+	\includegraphics[width=\linewidth]{C:/Users/Louise/Documents/project/final_project/figs/matrixplotofeigenvectors.png}
+	\caption{a subfigure}
+	\label{fig:graph1}
+\end{subfigure}%
+\begin{subfigure}{\linewidth}
+	\centering
+	\includegraphics[width=1.3\linewidth]{C:/Users/Louise/Documents/project/final_project/figs/plotofeigenvalues.png}
+	\caption{a subfigure}
+	\label{fig:graph2}
+\end{subfigure}
+\caption{subfigure test}
+\label{fig:test}
+\end{figure}
+
 
     \section{Discussion}
 
