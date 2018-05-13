@@ -21,28 +21,27 @@ def tridiagonal_matrix(x, Ec=0.214, Ej=52, ng=0.0):
     return vals, vectors
 
 
-def plot_eigenvector(vector, m, sub,fig):
+def plot_eigenvector(vector, m):
     # create a heatmap plot of eigenvectors
     matplotlib.rcParams['figure.figsize'] = (15, 15)
-    im=sub.imshow(abs(vector), extent=[0, m / 2, -m / 2, m / 2],aspect='auto')
-    fig.colorbar(im,orientation='vertical')
-    sub.xlabel("Matrix Element, m")
-    sub.ylabel("Charge State, n")
-    #plt.savefig("figs/matrixplotofeigenvectors.png",transparent=True)
-    #plt.show()
+    plt.imshow(abs(vector), extent=[0, m / 2, -m / 2, m / 2], aspect='auto')
+    plt.colorbar(orientation='vertical')
+    plt.xlabel("Matrix Element, m")
+    plt.ylabel("Charge State, n")
+    plt.savefig("figs/matrixplotofeigenvectors.png", transparent=True)
+    plt.show()
 
-def plot_eigenvalues(values,sub, ej=52):
+
+def plot_eigenvalues(values, ej=52):
     matplotlib.rcParams['figure.figsize'] = (15, 10)
-    sub.plot(np.real(values)[:40] / ej)
-    sub.xlabel("Matrix Element, m")
-    sub.ylabel("$E_m / E_J$")
-    #plt.savefig("figs/plotofeigenvalues.png",transparent=True)
-    #plt.show()
+    plt.plot(np.real(values)[:40] / ej)
+    plt.xlabel("Matrix Element, m")
+    plt.ylabel("$E_m / E_J$")
+    plt.savefig("figs/plotofeigenvalues.png", transparent=True)
+    plt.show()
 
-fig, (ax1,ax2) = plt.subplots(1,2)
+
 s = 80
 simple_vals, simple_vectors = tridiagonal_matrix(s)
-plot_eigenvector(simple_vectors, m=s, sub=ax1,fig=fig)
-plot_eigenvalues(simple_vals,sub=ax2)
-plt.savefig("figs/numerical_test.png",transparent=True)
-plt.show()
+plot_eigenvector(simple_vectors, m=s)
+plot_eigenvalues(simple_vals)

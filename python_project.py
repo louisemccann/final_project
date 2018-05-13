@@ -24,7 +24,7 @@ def tridiagonal_matrix(x, Ec=0.214, Ej=52, ng=0.0):
 def plot_eigenvector(vector, m):
     # create a heatmap plot of eigenvectors
     matplotlib.rcParams['figure.figsize'] = (15, 15)
-    plt.imshow(abs(vector), extent=[0, m / 2, -m / 4, m / 4])
+    plt.imshow(abs(vector), extent=[0, m / 2,-m/2,m/2])
     plt.colorbar(orientation='vertical')
     plt.xlabel("Matrix Element, m")
     plt.ylabel("Charge State, n")
@@ -41,7 +41,7 @@ def plot_eigenvalues(values, ej=52):
     plt.show()
 
 
-s = 80
+s = 200
 simple_vals, simple_vectors = tridiagonal_matrix(s)
 plot_eigenvector(simple_vectors, m=s)
 plot_eigenvalues(simple_vals)
@@ -192,23 +192,23 @@ plt.show()
 
 plt.close('all')
 f = []
-for m in range(80-1):
+for m in range(200-1):
     n = np.matrix(simple_vectors[m]).T
-    charge = np.diag(range(-40,40))
+    charge = np.diag(range(-100,100))
     n1 = np.matrix(simple_vectors[m+1])
     f1=np.matmul(np.matmul(n1,charge),n)
     f.append(abs(f1.flat[0]))
-plt.plot(f[40:])
+plt.plot(f[100:])
 plt.ylabel("Coupling Constant")
 plt.xlabel("Energy State")
 plt.savefig("figs/coupling.png")
 plt.show()
 
 f = []
-for m in range(1,40):
+for m in range(1,100):
     n = np.matrix(simple_vectors[m]).T
-    charge = np.diag(range(-40,40))
-    n1 = np.matrix(simple_vectors[80-m])
+    charge = np.diag(range(-100,100))
+    n1 = np.matrix(simple_vectors[200-m])
     f1=np.matmul(np.matmul(n1,charge),n)
     f.append(abs(f1.flat[0]))
 plt.plot(f)
