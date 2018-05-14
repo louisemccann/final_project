@@ -6,8 +6,8 @@ import scipy.special
 import scipy.sparse
 import math
 
-matplotlib.rcParams['figure.figsize'] = (15, 10)
-matplotlib.rcParams.update({'font.size': 22})
+#matplotlib.rcParams['figure.figsize'] = (15, 10)
+#matplotlib.rcParams.update({'font.size': 22})
 
 # ---------- numerical -------------------
 def tridiagonal_matrix(x, Ec=0.214, Ej=52, ng=0.0):
@@ -23,7 +23,7 @@ def tridiagonal_matrix(x, Ec=0.214, Ej=52, ng=0.0):
 
 def plot_eigenvector(vector, m):
     # create a heatmap plot of eigenvectors
-    matplotlib.rcParams['figure.figsize'] = (15, 15)
+    #matplotlib.rcParams['figure.figsize'] = (15, 15)
     plt.imshow(abs(vector), extent=[0, m / 2,-m/2,m/2])
     plt.colorbar(orientation='vertical')
     plt.xlabel("Matrix Element, m")
@@ -33,15 +33,15 @@ def plot_eigenvector(vector, m):
 
 
 def plot_eigenvalues(values, ej=52):
-    matplotlib.rcParams['figure.figsize'] = (15, 10)
+    #matplotlib.rcParams['figure.figsize'] = (15, 10)
     plt.plot(np.real(values)[:40] / ej)
     plt.xlabel("Matrix Element, m")
-    plt.ylabel("Em/Ej")
+    plt.ylabel("$E_m / E_J$")
     plt.savefig("figs/plot_of_eigenvalues.png")
     plt.show()
 
 
-s = 200
+s = 80
 simple_vals, simple_vectors = tridiagonal_matrix(s)
 plot_eigenvector(simple_vectors, m=s)
 plot_eigenvalues(simple_vals)
@@ -79,11 +79,11 @@ a = analytical_wavefunction(1, 1, 1)
 
 def plot_analytical_energy(p_values, m_values, ej=52):
     # plots mathematica and python analytical values
-    matplotlib.rcParams['figure.figsize'] = (15, 10)
+    #matplotlib.rcParams['figure.figsize'] = (15, 10)
     plt.plot(np.real(p_values) / ej, label='Python')
     plt.plot(m_values / ej, label='Mathematica')
     plt.xlabel("Matrix Element, m")
-    plt.ylabel("Em/Ej")
+    plt.ylabel("$E_m / E_J$")
     plt.legend()
 
 
@@ -105,15 +105,15 @@ plt.show()
 
 # compare mathematica and simple values
 ej = 52
-matplotlib.rcParams['figure.figsize'] = (15, 8)
+#matplotlib.rcParams['figure.figsize'] = (15, 8)
 fig, ax = plt.subplots(1, 2)
 ax[0].plot(simple_vals[:40], label='Numerical')
 plt.xlabel("Matrix Element, m")
-plt.ylabel("Em/Ej")
+plt.ylabel("$E_m / E_J$")
 plt.legend()
 plt.plot(mathematica[:40] / 16.0, label='Analytical', color='orange')
 plt.xlabel("Matrix Element, m")
-plt.ylabel("Em/Ej")
+plt.ylabel("$E_m / E_J$")
 plt.legend()
 plt.savefig("figs/compare_analytical_numerical.png")
 plt.show()
@@ -175,7 +175,7 @@ plt.show()
 
 
 colorplt = np.array([koch_wavefunction(m) for m in range(80)])
-matplotlib.rcParams['figure.figsize'] = (15, 15)
+#matplotlib.rcParams['figure.figsize'] = (15, 15)
 plt.imshow(np.absolute(np.real(colorplt))**2)
 plt.colorbar(orientation='vertical')
 plt.xlabel("Matrix Element, m")
@@ -185,7 +185,8 @@ plt.savefig("figs/matrix_plot.png")
 plt.show()
 
 mathematica = np.loadtxt("data2.dat", dtype=float)
-matplotlib.rcParams['figure.figsize'] = (15, 10)
+#matplotlib.rcParams['figure.figsize'] = (15, 10)
+#matplotlib.rcParams['figure.figsize'] = (15, 10)
 plt.plot(mathematica / ej, label='Mathematica')
 plt.savefig("figs/mathematica_koch.png")
 plt.show()
