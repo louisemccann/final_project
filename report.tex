@@ -71,7 +71,7 @@ The charge operator is given in the phase representation as
 \begin{equation} \label{eq:5}
 \boldsymbol{\hat{n}} = \frac{1}{i} \frac{\delta}{\delta\theta}
 \end{equation}
-Using this relation, the Hamiltonian can be quantised in the basis of charge eigenstates. This is the logical basis for the transmon system as $E_C \gg E_J$. The quantised Hamiltonian is:
+Using this relation, the Hamiltonian can be quantised in the basis of charge eigenstates. Which means that the Hamiltonian can be explicitly expressed  This is the logical basis for the transmon system as $E_C \gg E_J$. The quantised Hamiltonian is:
 \begin{equation} \label{eq:6}
 \hatH = 4E_C (n-n_g)^2 \ket{n}\bra{n} - \frac{E_J}{2}(\sum_{n} \ket{n+1}\bra{n} + \ket{n}\bra{n+1})
 \end{equation}
@@ -93,20 +93,20 @@ E_m(n_g) = E_C \mathcal{M}_A (2[n_g + k(m,n_g)],-\frac{E_J}{2E_C})
 \section{Results}
 \subsection{Initial Results}
 
-\begin{figure}[ht]
+\begin{figure}[!ht]
 \centering
 \includegraphics[width=\linewidth]{C:/Users/Louise/Documents/project/final_project/figs/matrixplotofeigenvectors.png}
 \caption{This figure s}
 \label{fig:graph1}
 \end{figure}
-The first step in the investigation is to simulate the transmon in the charge basis, as given by equation~\ref{eq:6}. The resulting matrix can be diagonalised. The resulting eigenvectors represent the wavefunctions of the system. Therefore the eigenvalues give the corresponding energy. These are shown in Figure~\ref{fig:graph1}. The code was written in the Python programming language. As the matrix is tridiagonal, functions from the scipy library for scientific computing were used.
+The first step in the investigation is to simulate the transmon in the charge basis, as given by equation~\ref{eq:6}. This was done because it is suspected that the transmon represents a charge state when it is excited to higher energy states. The matrix representation of \ref{eq:6} can be diagonalised. The resulting eigenvectors represent the wavefunctions of the system. Therefore, the eigenvalues give the corresponding energy for each state. The probability function for each state is given by the absolute wavefunction squared. The probability functions are shown in Figure~\ref{fig:graph1}. The intensity of the colour spectrum shows the probability of the system being in that state. The code was written in the Python programming language. As the matrix is tridiagonal, functions from the scipy library for scientific computing were used. Mathematica wasn't considered at this point due to the difficulty in creating tridiagonal matrices in this language.
 \begin{figure}[ht]
 \centering
 \includegraphics[width=\linewidth]{C:/Users/Louise/Documents/project/final_project/figs/plotofeigenvalues.png}
 \caption{This figure s}
 \label{fig:graph2}
 \end{figure}
-
+Following the eigenvector study shown in Figure \ref{fig:graph1}, the eigenvalues were explored to show different results from the same data. This allowed us to see how the energy of the system changes and why this occurs. This is displayed in Figure \ref{fig:graph2}. The y-axis represents the energy of state $m$ proportional to the energy of the junction, $E_J$ to provide a relative scale.
 
 \begin{figure}[ht]
 \centering
@@ -114,15 +114,17 @@ The first step in the investigation is to simulate the transmon in the charge ba
 \caption{writethiis}
 \label{fig:graph3}
 \end{figure}
-Next, the energy states were simulated using the analytical approach using Mathieu functions. First, the treatment by Cottet which is given in equation~\ref{eq:7}. Again the scipy library was used as it contained functions for the characteristic value of the Mathieu function. However, the resulting graph didn't look as expected. In addition, the function used did not accept non-integer parameters as arguments, so some of the accuracies were lost in converting floating point numbers into integers. As a result, the mathematical technical computing language was used instead. As shown in Figure~\ref{fig:graph3}, this gave a result which was much more in keeping with what was expected.
+Next, the energy of the states was simulated using the analytical approach using Mathieu functions. This was done to ensure the numerical matrix method worked, and also to compare different techniques and sources. First, the treatment by Cottet which is given in equation~\ref{eq:7}. Again the scipy library was used as it contained functions for the characteristic value of the Mathieu function. However, the resulting graph didn't look as expected, which is because it doesn't match the result given by the numerical result in Figure \ref{fig:graph2}. In Figure \ref{fig:graph3} the blue line representing the Python simulation shows anomalies around $25 < m < 50$. In addition, the function used did not accept non-integer parameters as arguments, so some of the accuracies were lost in converting floating point numbers into integers. As a result, the Mathematica technical computing language was used instead for the same method from \ref{eq:7}. As shown in Figure~\ref{fig:graph3}, this gave a result which was much more in keeping with what was expected. showing that the Python result is unphysical and the anomalies are due to the programming used. Going forward, where the methods involving Mathieu equations are written with Mathematica.
+Additionally, the range of the energy scale for the states is different in ~\ref{fig:graph3} when compared to the numerical result in ~\ref{fig:graph2}. This could be a simple error of the computation being a factor out of scale, however, it is the same between Mathematica and Python, so the error is likely due to the function used given by equation  ~\ref{eq:7}.
 \begin{figure}[ht]
 \centering
 \includegraphics[width=\linewidth]{C:/Users/Louise/Documents/project/final_project/figs/kochcomparison.png}
 \caption{writethiis}
 \label{fig:graph4}
 \end{figure}
+Both due to the errors in the Python implementation and the scaling issues given by the Cottet method, another implementation was considered. The method is given by Koch in equations \ref{eq:8} and \ref{eq:9} was also simulated using Mathematica. Figure \ref{fig:graph4} shows this result, given by the blue curve, compared to the numerical result in \ref{fig:graph2} represented by the orange curve. This shows that the result given by this method is a much better match for the numerical result than the Cottet method, as the curves align almost perfectly, with differences at low energy states.
 
-In the previous graphs, it has been assumed that $n_g = 0$. This is why the graph is composed of 'steps' and isn't smooth at the beginning as with Figure~\ref{fig:graph2}
+In the previous graphs, it has been assumed that $n_g = 0$. This is why the graph is composed of 'steps' and isn't smooth at the beginning as with Figure~\ref{fig:graph2}. The difference is seen clearly in Figure  \ref{fig:graph4}. This appears to be a numerical limit that is pertinent to both of the analytical methods.
 
 \begin{figure}[ht]
 \centering
@@ -130,11 +132,17 @@ In the previous graphs, it has been assumed that $n_g = 0$. This is why the grap
 \caption{writethiis}
 \label{fig:graph5}
 \end{figure}
-
+Next, the coupling between adjacent energy states was investigated. The coupling is effectively how hard it is to between energy states. High coupling means that it is easy to go between states, and low coupling means it is hard. Figure \ref{fig:graph5} shows the coupling between state $m$ and $m+1$, which given by $\bra{m+1}\boldsymbol{\hat{n}}\ket{m}$. This is because the method of moving between states is to add more charge so the charge operator is used. This can be simulated by using matrix multiplication between the eigenvectors produced for Figure \ref{fig:graph1}.
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\linewidth]{C:/Users/Louise/Documents/project/final_project/figs/couplingcomparekoch.png}
+\caption{writethiis}
+\label{fig:graph6}
+\end{figure}
 \section{Discussion}
-The results of the numerical analysis provide a lot of detail about what happens when the transmon is excited into higher energy states. In low states, where $E_J$ is higher than the energy of the state $E_m$, the system behaves like a harmonic oscillator in a cosine potential. As the system approaches the point where $E_J$ and $E_m$ are similar, the wavefunction starts to split into two peaks. This split is an important part of the system. It is shown in Figure~\ref{fig:graph1} where there are two branches or horns that split off. This effect is due to the fact that the charge operator can be either positive or negative, as it represents the imbalance of Cooper Pairs on the superconducting island. However, the positive and negative states are degenerate. This is represented by the 'steps' in the energy diagrams. A charge imbalance biased across the junction looks the same as an imbalance of the same amount biased the other way.
+The results of the numerical analysis provide a lot of detail about what happens when the transmon is excited into higher energy states. In low states, where $E_J$ is higher than the energy of the state $E_m$, the system behaves like a harmonic oscillator in a cosine potential, as shown by Koch. This is shown be the region where $m<8$ on Figure \ref{fig:graph1}. As the system approaches the point where $E_J$ and $E_m$ are similar, the wavefunction starts to split into two peaks. This split is an important part of the system. It is shown in Figure~\ref{fig:graph1} where there are two branches or horns that split off, at around $m=10$. This effect is due to the fact that the charge operator can be either positive or negative, as it represents the imbalance of Cooper Pairs on the superconducting island. However, the positive and negative states are degenerate. The degeneracy can be seen clearly in Figure \ref{fig:graph2} and is represented by the 'steps' in the energy. The points where there are two adjacent states with the same energy value are degenerate and effectively indistinguishable from each other. These are shown by the states that make up the horns in Figure \ref{fig:graph1}, such that each degenerate pair is made up of a state from each horn, or a state with a positive charge and another with equal but negative charge. A charge imbalance biased across the junction looks the same as an imbalance of the same amount biased the other way.
 
-This degeneracy caused by the charge operator is only present at energies such that $E_m > E_J$. In this case, the $E_J$ term in the Hamiltonian has almost no effect on the overall system. Instead, the transmon behaves like a charge state.  As the energy increases, the wavefunction becomes a sharp peak. This is shown in Figure~\ref{fig:graph1}, the intensity of the wavefunction is represented by the colour of the graph. At high values of $m$, the probability of the wavefunction looks almost exactly the same as for the corresponding charge state.
+This degeneracy is only present at energies such that $E_m > E_J$. In this case, the $E_J$ term in the Hamiltonian has almost no effect on the overall system. Instead, the transmon behaves like a charge state.  As the energy increases, the wavefunction becomes a sharp peak. This is shown in Figure~\ref{fig:graph1}, the intensity of the wavefunction is represented by the colour of the graph. At high values of $m$, the probability of the wavefunction looks almost exactly the same as for the corresponding charge state.
 
 \section{Conclusion}
 
