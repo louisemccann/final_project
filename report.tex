@@ -17,7 +17,6 @@
 \usepackage{amssymb}
 \usepackage{caption}
 \usepackage{subcaption}
-\usepackage{epstopdf}
 
 \newcommand*{\hatH}{\hat{\mathcal{H}}}
 \graphicspath{C:/Users/Louise/Documents/project/final_project/figs/}
@@ -80,7 +79,7 @@ By considering the Hamiltonian in the charge basis it may be solved exactly usin
 \begin{equation} \label{eq:7}
 E_k = E_C \mathcal{M}_A (k+1 - (k+1)[mod(2)] + 2n_g(-1)^k, -\frac{2E_J}{E_C})
 \end{equation}
-Where $k \in \mathbb{Z}$ and $\mathcal{M}_A$ gives the characteristic value, $a_r$ for even Mathieu functions. However, this only applies to values of $n_g$ such that $0 < n_g < \frac{1}{2}$. The treatment given by Koch expands this such that all values of $n_g$ can be applied. This method also treats $k$ as a function, given by:
+Where $k \in \mathbb{Z}$ and $\mathcal{M}_A$ gives the characteristic value for even Mathieu functions. However, this only applies to values of $n_g$ such that $0 < n_g < \frac{1}{2}$. The treatment given by Koch expands this such that all values of $n_g$ can be applied. This method also treats $k$ as a function, given by:
 \begin{equation} \label{eq:8}
 k(m, n_g) = \sum_{l=\pm 1} [int(2n_g + l/2)mod(2)] \times [int(n_g) + l(-1)^m ((m+1)div(2))]
 \end{equation}
@@ -93,7 +92,7 @@ E_m(n_g) = E_C \mathcal{M}_A (2[n_g + k(m,n_g)],-\frac{E_J}{2E_C})
 \section{Results}
 \subsection{Initial Results}
 
-\begin{figure}[!ht]
+\begin{figure}[ht]
 \centering
 \includegraphics[width=\linewidth]{C:/Users/Louise/Documents/project/final_project/figs/matrixplotofeigenvectors.png}
 \caption{This figure s}
@@ -133,16 +132,39 @@ In the previous graphs, it has been assumed that $n_g = 0$. This is why the grap
 \label{fig:graph5}
 \end{figure}
 Next, the coupling between adjacent energy states was investigated. The coupling is effectively how hard it is to between energy states. High coupling means that it is easy to go between states, and low coupling means it is hard. Figure \ref{fig:graph5} shows the coupling between state $m$ and $m+1$, which given by $\bra{m+1}\boldsymbol{\hat{n}}\ket{m}$. This is because the method of moving between states is to add more charge so the charge operator is used. This can be simulated by using matrix multiplication between the eigenvectors produced for Figure \ref{fig:graph1}.
+
+\section{Discussion}
+\subsection{Main Discussion}
+The results of the numerical analysis provide a lot of detail about what happens when the transmon is excited into higher energy states. In low states, where $E_J$ is higher than the energy of the state $E_m$, the system behaves like a harmonic oscillator in a cosine potential, as shown by Koch. This is shown be the region where $m<8$ on Figure \ref{fig:graph1}. As the system approaches the point where $E_J$ and $E_m$ are similar, the wavefunction starts to split into two peaks. This split is an important part of the system. It is shown in Figure~\ref{fig:graph1} where there are two branches or horns that split off, at around $m=10$. This effect is due to the fact that the charge operator can be either positive or negative, as it represents the imbalance of Cooper Pairs on the superconducting island. However, the positive and negative states are degenerate. The degeneracy can be seen clearly in Figure \ref{fig:graph2} and is represented by the 'steps' in the energy. The points where there are two adjacent states with the same energy value are degenerate and effectively indistinguishable from each other. These are shown by the states that make up the horns in Figure \ref{fig:graph1}, such that each degenerate pair is made up of a state from each horn, or a state with a positive charge and another with equal but negative charge. A charge imbalance biased across the junction looks the same as an imbalance of the same amount biased the other way.
+
+This degeneracy is only present at energies such that $E_m > E_J$. This is best shown in Figure \ref{fig:graph2} where the smooth section of the curve rapidly changes into steps where $E_m = E_J$. The smoothness before this is largely due to the $E_J$ term given in the Hamiltonian, equation \ref{eq:3}. After this point, the $E_J$ term in the Hamiltonian has almost no effect on the overall system. Instead, the transmon behaves like a charge state and entirely dependent on the charge operator. This is likely because there is such a large charge imbalance that the charged term dominates. A charge state is represented as a wavefunction by an intense peak at the corresponding charge, as it highly probable that the state will be at that charge value. As the energy increases and the transmon is forced into higher states, the wavefunction becomes a sharp peak. This is shown in Figure~\ref{fig:graph1}, the intensity of the wavefunction is represented by the colour of the graph. At high values of $m$, the probability of the wavefunction looks almost exactly the same as for the corresponding charge state.
+
+\subsection{Second Discussion}
+The analytical methods presented by Cottet and Koch both give appreciable results when compared to the numerical function, as shown in Figure \ref{fig:graph4}. They both follow the same overall shape of the curve and the important steps produced by the degenerate states are present. However, for the case where $n_g = 0$, they do not accurately represent the lower states. Neither method achieves the smooth section of the curve for the region before $E_m = E_J$. This can be rectified by making $n_g$ very small, for example setting $n_g = 10^{-10}$. This is shown in Figure \ref{fig:graph6}, where there is a smooth section. However, the due to scaling issues the numerical method remains the better alternative. This emphasises how effective and comparatively simple the numerical solution is.
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\linewidth]{C:/Users/Louise/Documents/project/final_project/figs/compare_analytical_numerical.png}
+\caption{writethiis}
+\label{fig:graph6}
+\end{figure}
+
+\subsection{wiggly graph discussion}
+
 \begin{figure}[ht]
 \centering
 \includegraphics[width=\linewidth]{C:/Users/Louise/Documents/project/final_project/figs/couplingcomparekoch.png}
 \caption{writethiis}
-\label{fig:graph6}
+\label{fig:graph7}
 \end{figure}
-\section{Discussion}
-The results of the numerical analysis provide a lot of detail about what happens when the transmon is excited into higher energy states. In low states, where $E_J$ is higher than the energy of the state $E_m$, the system behaves like a harmonic oscillator in a cosine potential, as shown by Koch. This is shown be the region where $m<8$ on Figure \ref{fig:graph1}. As the system approaches the point where $E_J$ and $E_m$ are similar, the wavefunction starts to split into two peaks. This split is an important part of the system. It is shown in Figure~\ref{fig:graph1} where there are two branches or horns that split off, at around $m=10$. This effect is due to the fact that the charge operator can be either positive or negative, as it represents the imbalance of Cooper Pairs on the superconducting island. However, the positive and negative states are degenerate. The degeneracy can be seen clearly in Figure \ref{fig:graph2} and is represented by the 'steps' in the energy. The points where there are two adjacent states with the same energy value are degenerate and effectively indistinguishable from each other. These are shown by the states that make up the horns in Figure \ref{fig:graph1}, such that each degenerate pair is made up of a state from each horn, or a state with a positive charge and another with equal but negative charge. A charge imbalance biased across the junction looks the same as an imbalance of the same amount biased the other way.
+The wavefunctions for the states produced by the numerical results can be used to investigate how the states are coupled relative to each other. This is displayed in Figure \ref{fig:graph5}, which shows the coupling between state $m$ and the adjacent state $m+1$. This graph can be split into 3 effectively different regions.
 
-This degeneracy is only present at energies such that $E_m > E_J$. In this case, the $E_J$ term in the Hamiltonian has almost no effect on the overall system. Instead, the transmon behaves like a charge state.  As the energy increases, the wavefunction becomes a sharp peak. This is shown in Figure~\ref{fig:graph1}, the intensity of the wavefunction is represented by the colour of the graph. At high values of $m$, the probability of the wavefunction looks almost exactly the same as for the corresponding charge state.
+ The first region is for $m<10$. For this region the coupling between adjacent states increases, so the system can relatively easily transition between states. This is about the extent to which the transmon has been studied so far. An approximation is given by Koch as:
+\begin{equation} \label{eq:10}
+\bra{m+1}\boldsymbol{\hat{n}}\ket{m} \approx \sqrt{\frac{m+1}{2}} \bigg( \frac{E_J}{8E_C}\bigg)^{1/4}
+\end{equation}
+This function is shown alongside the first few states of the numerical coupling constant is displayed in Figure \ref{fig:graph7}. This graph shows that for low states, the Koch approximation is a good representation for the coupling constant between adjacent energy states. However, the numerical result and the approximation diverge above $m=7$, so this means that the approximation is only relevant for these very low energy states and should not be extended.
+
+The second region of Figure \ref{fig:graph5} to be discussed is for $10<m<15$. During this section, the curve decreases smoothly at a constant rate. This matches up to the region in Figure \ref{fig:graph1} where the graph has split into two horns but the states are not completely charge-like, which occurs around $m=15$ where $E_m = E_J$. This is likely because of the nature of the potential. It is shaped like a cosine, which means that at the very top of the potential, the effective wall between potential wells is thin, and it is much easier for the wavefunction to tunnel through the wall. Hence at this point the transmon partially behaves like a charge state because it is able to partially tunnel through the potential. When the energy $E_m$ is much higher than $E_J$, there is no longer a potential well and the transmon behaves almost completely like a charge state. The coupling between the states decreases rapidly to the point where it approaches 0.
 
 \section{Conclusion}
 
