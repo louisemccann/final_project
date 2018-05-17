@@ -92,29 +92,30 @@ E_m(n_g) = E_C \mathcal{M}_A (2[n_g + k(m,n_g)],-\frac{E_J}{2E_C})
 
 \section{Results}
 \subsection{Initial Results}
-\begin{figure}
+
+\begin{figure}[ht]
 \centering
 \includegraphics[width=\linewidth]{C:/Users/Louise/Documents/project/final_project/figs/matrixplotofeigenvectors.png}
 \caption{This figure s}
 \label{fig:graph1}
 \end{figure}
-
-\begin{figure}
+The first step in the investigation is to simulate the transmon in the charge basis, as given by equation~\ref{eq:6}. The resulting matrix can be diagonalised. The resulting eigenvectors represent the wavefunctions of the system. Therefore the eigenvalues give the corresponding energy. These are shown in Figure~\ref{fig:graph1}. The code was written in the Python programming language. As the matrix is tridiagonal, functions from the scipy library for scientific computing were used.
+\begin{figure}[ht]
 \centering
 \includegraphics[width=\linewidth]{C:/Users/Louise/Documents/project/final_project/figs/plotofeigenvalues.png}
 \caption{This figure s}
 \label{fig:graph2}
 \end{figure}
 
-The first step in the investigation is to simulate the transmon in the charge basis, as given by equation~\ref{eq:6}. The resulting matrix can be diagonalised. The resulting eigenvectors represent the wavefunctions of the system. Therefore the eigenvalues give the corresponding energy. These are shown in Figure~\ref{fig:graph1}. The code was written in the Python programming language. As the matrix is tridiagonal, functions from the scipy library for scientific computing were used.
-\begin{figure}
+
+\begin{figure}[ht]
 \centering
 \includegraphics[width=\linewidth]{C:/Users/Louise/Documents/project/final_project/figs/comparepythonmathematicang0.png}
 \caption{writethiis}
 \label{fig:graph3}
 \end{figure}
 Next, the energy states were simulated using the analytical approach using Mathieu functions. First, the treatment by Cottet which is given in equation~\ref{eq:7}. Again the scipy library was used as it contained functions for the characteristic value of the Mathieu function. However, the resulting graph didn't look as expected. In addition, the function used did not accept non-integer parameters as arguments, so some of the accuracies were lost in converting floating point numbers into integers. As a result, the mathematical technical computing language was used instead. As shown in Figure~\ref{fig:graph3}, this gave a result which was much more in keeping with what was expected.
-\begin{figure}
+\begin{figure}[ht]
 \centering
 \includegraphics[width=\linewidth]{C:/Users/Louise/Documents/project/final_project/figs/kochcomparison.png}
 \caption{writethiis}
@@ -123,7 +124,7 @@ Next, the energy states were simulated using the analytical approach using Mathi
 
 In the previous graphs, it has been assumed that $n_g = 0$. This is why the graph is composed of 'steps' and isn't smooth at the beginning as with Figure~\ref{fig:graph2}
 
-\begin{figure}
+\begin{figure}[ht]
 \centering
 \includegraphics[width=\linewidth]{C:/Users/Louise/Documents/project/final_project/figs/coupling.png}
 \caption{writethiis}

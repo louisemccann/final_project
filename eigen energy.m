@@ -26,7 +26,7 @@ Emkoch[m0_, ng0_] := Module[{m=m0, ng=ng0},EC0; EJ = EJ0;
     EC0*MathieuCharacteristicA[(2*(ng+k)),(-EJ0/(2*EC0))]];
 data2 := Table[Emkoch[x,0],{x,0,40}];
 Export["C:\\Users\\Louise\\Documents\\project\\final_project\\data\\data_ng_0.dat",data2 ];
-data2 := Table[Emkoch[x,1E-10],{x,0,40}];
+data2 := Table[Emkoch[x,0.01],{x,0,40}];
 Export["C:\\Users\\Louise\\Documents\\project\\final_project\\data\\data_ng_02.dat",data2 ];
 data2 := Table[Emkoch[x,0.4],{x,0,40}];
 Export["C:\\Users\\Louise\\Documents\\project\\final_project\\data\\data_ng_04.dat",data2 ];
