@@ -16,7 +16,7 @@ Em[k0_] := Module[{k=k0}, EC = EC0; EJ=EJ0;NG=NG0;
 data := Table[Em[x], {x,0,80}];
 Export["C:\\Users\\Louise\\Documents\\project\\final_project\\data_ng_nearly0.dat",data ];
 
-NG0=0.0;
+NG0=1E-10;
 data := Table[Em[x], {x,0,80}];
 Export["C:\\Users\\Louise\\Documents\\project\\final_project\\data_ng_0.dat",data ];
 

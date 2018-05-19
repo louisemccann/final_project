@@ -35,30 +35,67 @@ Supervisor: Eran Ginossar
 \clearpage
 
 \section{Introduction}
-The superconducting circuit has many uses in modern physics. Its applications include SQUIDS to detect subtle magnetic fields and qubits which are the underlying basis of quantum computers. Quantum computing and the methods behind it could have a big impact on the future of physics. A common circuit made of two superconducting reservoirs with a thin insulating layer between them is called a Josephson Junction. This was predicted by Brian Josephson who won a Nobel Prize for his work. A Josephson Junction works by allowing cooper pairs to tunnel across the barrier without any electrical resistance. Cooper pairs are bound electrons that form at very low temperatures and are the mechanism behind superconductivity. Josephson Junctions are relatively simple devices, which means they are easy to manufacture. They have long coherence times in principle, which means that many operations could be performed on a qubit made out of a Josephson Junction. The Junction is well known and has been studied in many applications. However, the majority of research has been focused on the lower states of the junction. This investigation aims to study the theory of the Josephson Junction and in particular to assess what the properties the system has when excited into higher states.
+The superconducting circuit has many uses in modern physics. One such use is in Superconducting Quantum Interference Devices or SQUIDs, which are used to detect very small magnetic fields \cite{jaklevicQuantumInterferenceEffects1964}. Superconducting circuits can also be used to make qubits, which are the underlying mechanism behind quantum computers \cite{makhlinQuantumStateEngineering2001, youSuperconductingCircuitsQuantum2007}. Quantum computing and the methods behind it could have a big impact on the future of physics, technology and industry \cite{yingQuantumComputationQuantum2010,montanaroQuantumAlgorithmsOverview2016}.
 
 \subsection{Quantum Computers}
-Quantum computers are based on the principle that a particle can be in a superposition of states. The theory that computers can be built using this principle has been around since the 1980s and yet the development of quantum computers is still ongoing. These computers would take advantage of quantum algorithms, such as. These could solve problems faster than modern computers and could solve extremely complex problems, such as the many-body problem. Quantum computers are built from qubits, or quantum mechanical circuits that can be measured to be either in the ground state or the first excited state. Qubits rely on the quantum mechanical principle, which states that the qubit is in both states simultaneously until measured. The furthest application has been achieved using NMR techniques to represent a qubit, but another popular medium is to use a superconducting circuit.
+Quantum computers are based on the principle that a particle can be in a superposition of states. The theory that computers can be built using this principle has been around since the 1980's \cite{feynmanSimulatingPhysicsComputers1982} and yet the development of quantum computers is still ongoing \cite{harrowQuantumComputationalSupremacy2017}. These computers would take advantage of quantum algorithms. These could solve problems faster than modern computers and could solve extremely complex problems, such as the many-body problem \cite{sommaQuantumComputationComplexity2005}. Quantum computers are built from qubits, or quantum mechanical circuits that can be measured to be either in the ground state or the first excited state. Qubits rely on the quantum mechanical principle, which states that the qubit is in a superpostion of both states until measured. The most advanced application has been achieved using NMR techniques to represent a qubit \cite{vandersypenExperimentalRealizationShor2001}, but another popular medium is to use a superconducting circuit. Typically, many circuits are linked together to form logic gates, similar to classical computers.
 
 \subsection{Superconducting Circuits}
-Superconductors are materials that, at low temperatures, have zero resistance to electronic fields. At these low temperatures, pairs of electrons become bound together in such a way that the energy is lower than that of a single electron. These are the charge carriers in a superconducting material. As a pair of electrons combined, the spin for a cooper pair is an integer and so they can behave like bosons. This effect allows multiple Cooper pairs to occupy the same energy level, unlike single electrons. Superconductors are ideal for qubit systems. They exhibit quantum behaviour on a macroscopic level and the parameters of a superconducting may be modified by changing, for example, the capacitance. There are 3 types of superconducting qubits. The charge qubit, which is based on the number of cooper pairs on either side of a Josephson Junction. The flux qubit, which is based on the quantized magnetic flux inside a superconducting ring. Finally, the phase qubit, which is similar to the charge qubit but instead is based on the amplitude of quantum oscillations on either side of the Josephson Junction. In this report, only the charge qubit is considered.
+Superconductors are materials that, at low temperatures, have zero resistance to electronic fields. At these low temperatures, pairs of electrons become bound together in such a way that the energy is lower than that of a single electron. These are the charge carriers in a superconducting material and are known as Cooper pairs \cite{CooperBoundElectronPairs1956}. This mechnaism for superconductivity is typically described by BCS theory \cite{bardeenTheorySuperconductivity1957}. As a pair of electrons combined, the spin for a Cooper pair is an integer and so they can behave like bosons. This effect allows multiple Cooper pairs to occupy the same energy level and quantum state, unlike single electrons. Superconductors are ideal for qubit systems. They exhibit quantum behaviour on a macroscopic level and the parameters of a superconducting circuit may be modified by changing, for example, the capacitance of the circiut. There are 3 types of superconducting qubits that can be produced. The charge qubit, which is based on the number of Cooper pairs on either side of a superconducting junction. The flux qubit, which is based on the quantized magnetic flux inside a superconducting ring. Finally, the phase qubit, which is similar to the charge qubit but instead is based on the amplitude of quantum oscillations on either side of the superconducting. In this report, only the charge qubit is considered.
+
+\subsection{Josephson Junction}
+\begin{figure}[ht]
+\centering
+\includegraphics[width=.7\linewidth]{C:/Users/Louise/Documents/project/final_project/figs/josephsonjunction.png}
+\caption{magic}
+\label{fig:picture1}
+\end{figure}
+One of the most commonly used superconducting circuits is known as a Josephson Junction, named after Brian Josephson who went on to win a Nobel Prize for his work \cite{josephsonDiscoveryTunnellingSupercurrents1974,josephsonPossibleNewEffects1962}. 
+The circuit is composed of two superconducting reservoirs connected by an insulating barrier. 
+A Josephson Junction works by allowing Cooper pairs to tunnel across the potential barrier between the superconducting reservoirs without any electrical resistance. 
+
+Josephson Junctions are relatively simple devices, which means they are easy to manufacture. They have long coherence times in principle \cite{paikObservationHighCoherence2011}, which means that many operations could be performed on a qubit made out of a Josephson Junction. The Junction is well known and has been studied in many applications \cite{yuCoherentTemporalOscillations2002,simmondsDecoherenceJosephsonPhase2004}. However, the majority of research has been focused on the lower energy states of the junction. This investigation aims to study the theory of the Josephson Junction and in particular to assess what the properties the system has when excited into higher states.
+
+There are a number of ways to introduce a Josephson Junction into a superconducting circuit. A common method is the so called Cooper Pair Box (CBP) \cite{bladhSingleCooperpairBox2005}, which is made of a Josephson Junction and a gate capaciter. The CPB will be further explored in the Theory section. In this report, a form of the CPB known as a transmon is considered. The transmon is a CPB where the energy of the junction is much higher than the energy of the capacitor. 
 
 \subsection{Motivation}
-Previous studies on the transmon have mainly focused on the system in either the ground state or first excited levels, both theoretically and experimentally. However, the behaviour of the transmon is not very well described for high states. In experimental work, a transmon is placed in a cavity and the system is driven by an electromagnetic wave. This system shows that for high power readouts, the transmon is ignored and largely has no effect on the overall system. In this investigation, the transmon will be simulated and the effect of a case shall be made for the behaviour of the transmon at high energy states.
+Previous studies on the transmon have mainly focused on the system in either the ground state or first excited states, both theoretically and experimentally. However, the behaviour of the transmon is not very well described for high states. In experimental work, a transmon is placed in a cavity and the system is driven by an electromagnetic standing wave. Recent studies into the best methods of measuring transmon systems have been looking into the effect of high driving power \cite{reedHighFidelityReadoutCircuit2010}.  It is important to know how the transmon behaves in these high states so that future experiments into superconducting circuits use the transmon to the best functionality. In this investigation, the transmon will be simulated and a case shall be made for the behaviour of the transmon at high energy states.
 
-\section{Method}
-In this section, the theory describing the Josephson Junction and the methods of interpreting the quantum mechanics in such a way that can be replicated using programming techniques.
+Previous work has looked into how to study and measure a transmon and cavity system, particularly in a high power readout scheme. 
+\begin{figure}[ht]
+\centering
+\includegraphics[width=.7\linewidth]{C:/Users/Louise/Documents/project/final_project/figs/cavity.png}
+\caption{magic}
+\label{fig:picture2}
+\end{figure}
+\begin{figure}[ht]
+\centering
+\includegraphics[width=.7\linewidth]{C:/Users/Louise/Documents/project/final_project/figs/highpowerreadout.png}
+\caption{magic}
+\label{fig:picture3}
+\end{figure}
+Firgure \ref{fig:picture3} shows the response of the transmon system as the driving power is increased. The white arrow shows the expected resonance of the empty cavity without the transmon. However, the measured response frequency is shifted away from this point. As the driving power increases, the system resonance approaches the empty cavity resonance, shown by the black cross. It is suspected that the initial shift is caused by the transition. The addition of the transmon into the system cause the the energy levels of the cavity to shift. This behavoir has been validated in other research \cite{bishopResponseStronglyDriven2010,paikObservationHighCoherence2011,elliottApplicationsFokkerPlanckEquation2016}. However at some power this effect disappears and the transmon is effectively ignored by the system. This report aims to explore why this occurs.
 
-\subsection{Theory}
-As mentioned in the introduction, a Cooper Pair Box is a qubit which utilises the Josephson Junction. It is comprised of a superconducting island, which is connected to a superconducting reservoir via a Josephson Junction. It is then attached to a capacitor and a gate voltage source. The junction has energy $E_J$ and capacitance $C_J$. The box also has an additional energy, the Cooper Pair Coulomb energy:
+
+\section{Theory}
+In this section, the theory describing the Josephson Junction and the methods of interpreting the quantum mechanics are presented in such a way that can be replicated using programming techniques.
+
+As mentioned in the introduction, a Cooper Pair Box is a qubit which is implemented by a Josephson Junction. It is comprised of a superconducting island, which is connected to a superconducting reservoir via a Josephson Junction. It is then attached to a capacitor and a gate voltage source \cite{cottetImplementationQuantumBit2002}.
+\begin{figure}[ht]
+\centering
+\includegraphics[width=.7\linewidth]{C:/Users/Louise/Documents/project/final_project/figs/cpb.png}
+\caption{magic}
+\label{fig:picture3}
+\end{figure}
+The junction has energy $E_J$ and capacitance $C_J$. The box also has an additional energy, the Cooper Pair Coulomb energy:
 \begin{equation} \label{eq:1}
 E_C =  \frac{(2e)^2}{2C_\Sigma}
 \end{equation}
-where $C_\Sigma$ is the total capacitance of the box. $E_C$ can also be thoug!ht of as the energy required to move one Cooper pair across the junction. We can also consider a charge operator, $\boldsymbol{\hat{n}}$, which is associated with the excess number of cooper pairs on the island. The eigenstates of this operator are such that
+where $C_\Sigma$ is the total capacitance of the box. $E_C$ can also be thought of as the energy required to move one Cooper pair across the junction. We can also consider a charge operator, $\boldsymbol{\hat{n}}$, which is associated with the excess number of Cooper pairs on the island. The eigenstates of the charge operator are such that
 \begin{equation} \label{eq:2}
 \boldsymbol{\hat{n}}\ket{\boldsymbol{n}} = \boldsymbol{n}\ket{\boldsymbol{n}},  \boldsymbol{n} \in \mathbb{Z}
 \end{equation}
-The total Hamiltonian of the box consists of two different terms. The first is based on the charge operator and the second relates to the superconducting phase of the island, $\hat{\theta}$. The Hamiltonian for the system is:
+The total Hamiltonian of the box consists of two different terms as shown in Equation \ref{eq:3}. The first term is based on the charge operator and the second relates to the superconducting phase of the island, $\hat{\theta}$. The Hamiltonian for the system is:
 \begin{equation} \label{eq:3}
 \hatH = E_C (\boldsymbol{\hat{n}} - n_g)^2 - E_J \cos{\hat{\theta}}
 \end{equation}
@@ -75,11 +112,11 @@ Using this relation, the Hamiltonian can be quantised in the basis of charge eig
 \hatH = 4E_C (n-n_g)^2 \ket{n}\bra{n} - \frac{E_J}{2}(\sum_{n} \ket{n+1}\bra{n} + \ket{n}\bra{n+1})
 \end{equation}
 An alternative method of representing the transmon system is to substitute the Hamiltonian from equation~\ref{eq:3} into the Schr\"odinger equation and solve the equation analytically.
-By considering the Hamiltonian in the charge basis it may be solved exactly using Mathieu equations. In this investigation, two different results for the energy of the system have been considered. The first is from Cottet and is given by:
+By considering the Hamiltonian in the charge basis it may be solved exactly using Mathieu equations \cite{rubyApplicationsMathieuEquation1996}. In this investigation, two different models for the energy of the system have been considered. The first is from Cottet \cite{cottetImplementationQuantumBit2002} and is given by:
 \begin{equation} \label{eq:7}
 E_k = E_C \mathcal{M}_A (k+1 - (k+1)[mod(2)] + 2n_g(-1)^k, -\frac{2E_J}{E_C})
 \end{equation}
-Where $k \in \mathbb{Z}$ and $\mathcal{M}_A$ gives the characteristic value for even Mathieu functions. However, this only applies to values of $n_g$ such that $0 < n_g < \frac{1}{2}$. The treatment given by Koch expands this such that all values of $n_g$ can be applied. This method also treats $k$ as a function, given by:
+Where $k \in \mathbb{Z}$ gives the state of the system and $\mathcal{M}_A$ gives the characteristic value for even Mathieu functions. However, this only applies to values of $n_g$ such that $0 < n_g < \frac{1}{2}$. The treatment given as alternate model by Koch \cite{kochChargeinsensitiveQubitDesign2007} expands this such that all values of $n_g$ can be applied. This method also treats $k$ as a function, given by:
 \begin{equation} \label{eq:8}
 k(m, n_g) = \sum_{l=\pm 1} [int(2n_g + l/2)mod(2)] \times [int(n_g) + l(-1)^m ((m+1)div(2))]
 \end{equation}
@@ -88,18 +125,18 @@ Where $int$ rounds to the closest integer, $mod$ represents the modulo, and $div
 E_m(n_g) = E_C \mathcal{M}_A (2[n_g + k(m,n_g)],-\frac{E_J}{2E_C})
 \end{equation}
 
+The equations given form a complete model of the transmon. They can be easily converted into functions using appropiate software and then manipulated and studied. 
 
 \section{Results}
-\subsection{Initial Results}
 
-\begin{figure}[!ht]
+\begin{figure}[ht]
 \centering
 \includegraphics[width=\linewidth]{C:/Users/Louise/Documents/project/final_project/figs/matrixplotofeigenvectors.png}
 \caption{This figure s}
 \label{fig:graph1}
 \end{figure}
-The first step in the investigation is to simulate the transmon in the charge basis, as given by equation~\ref{eq:6}. This was done because it is suspected that the transmon represents a charge state when it is excited to higher energy states. The matrix representation of \ref{eq:6} can be diagonalised. The resulting eigenvectors represent the wavefunctions of the system. Therefore, the eigenvalues give the corresponding energy for each state. The probability function for each state is given by the absolute wavefunction squared. The probability functions are shown in Figure~\ref{fig:graph1}. The intensity of the colour spectrum shows the probability of the system being in that state. The code was written in the Python programming language. As the matrix is tridiagonal, functions from the scipy library for scientific computing were used. Mathematica wasn't considered at this point due to the difficulty in creating tridiagonal matrices in this language.
-\begin{figure}[!ht]
+The first step in the investigation is to simulate the transmon in the charge basis, as given by equation~\ref{eq:6}. This was done because it is suspected that the transmon represents a charge state when it is excited to higher energy states. The matrix representation of \ref{eq:6} can be diagonalised. The resulting eigenvectors represent the wavefunctions of the system. Hence, the eigenvalues give the corresponding energy for each state. The probability function for each state is given by the absolute wavefunction squared. The probability functions are shown in Figure~\ref{fig:graph1}. The intensity of the colour spectrum shows the probability of the system being in that state. The code was written in the Python programming language. As the matrix is tridiagonal, functions from the scipy library for scientific computing were used \cite{jonesSciPyOpenSource2001}. Mathematica wasn't considered at this point due to the difficulty in creating tridiagonal matrices in this language.
+\begin{figure}[ht]
 \centering
 \includegraphics[width=\linewidth]{C:/Users/Louise/Documents/project/final_project/figs/plotofeigenvalues.png}
 \caption{This figure s}
@@ -107,15 +144,15 @@ The first step in the investigation is to simulate the transmon in the charge ba
 \end{figure}
 Following the eigenvector study shown in Figure \ref{fig:graph1}, the eigenvalues were explored to show different results from the same data. This allowed us to see how the energy of the system changes and why this occurs. This is displayed in Figure \ref{fig:graph2}. The y-axis represents the energy of state $m$ proportional to the energy of the junction, $E_J$ to provide a relative scale.
 
-\begin{figure}[!ht]
+\begin{figure}[ht]
 \centering
-\includegraphics[width=\linewidth]{C:/Users/Louise/Documents/project/final_project/figs/comparepythonmathematicang0.png}
+\includegraphics[width=\linewidth]{C:/Users/Louise/Documents/project/final_project/figs/comparepythonmathematica.png}
 \caption{writethiis}
 \label{fig:graph3}
 \end{figure}
-Next, the energy of the states was simulated using the analytical approach using Mathieu functions. This was done to ensure the numerical matrix method worked, and also to compare different techniques and sources. First, the treatment by Cottet which is given in equation~\ref{eq:7}. Again the scipy library was used as it contained functions for the characteristic value of the Mathieu function. However, the resulting graph didn't look as expected, which is because it doesn't match the result given by the numerical result in Figure \ref{fig:graph2}. In Figure \ref{fig:graph3} the blue line representing the Python simulation shows anomalies around $25 < m < 50$. In addition, the function used did not accept non-integer parameters as arguments, so some of the accuracies were lost in converting floating point numbers into integers. As a result, the Mathematica technical computing language was used instead for the same method from \ref{eq:7}. As shown in Figure~\ref{fig:graph3}, this gave a result which was much more in keeping with what was expected. showing that the Python result is unphysical and the anomalies are due to the programming used. Going forward, where the methods involving Mathieu equations are written with Mathematica.
+Next, the energy of the states was simulated using the analytical approach using Mathieu functions. This was done to ensure the numerical matrix method worked, and also to compare different techniques and sources. First, the treatment by Cottet which is given in equation~\ref{eq:7}. Again the scipy library was used as it contained functions for the characteristic value of the Mathieu function. However, the resulting graph didn't look as expected, which is because it doesn't match the result given by the numerical result in Figure \ref{fig:graph2}. In Figure \ref{fig:graph3} the blue line representing the Python simulation shows anomalies around $25 < m < 50$. In addition, the function used did not accept non-integer parameters as arguments, so some of the accuracies were lost in converting floating point numbers into integers. Aas an alternative, the Mathematica technical computing language was used to verify the results from the Python simulation for the same method from \ref{eq:7}. As shown in Figure~\ref{fig:graph3}, this gave a result which was much more in keeping with what was expected. showing that the Python result is unphysical and the anomalies are due to the programming used. Going forward, where the methods involving Mathieu equations are written with Mathematica.
 Additionally, the range of the energy scale for the states is different in ~\ref{fig:graph3} when compared to the numerical result in ~\ref{fig:graph2}. This could be a simple error of the computation being a factor out of scale, however, it is the same between Mathematica and Python, so the error is likely due to the function used given by equation  ~\ref{eq:7}.
-\begin{figure}[!ht]
+\begin{figure}[ht]
 \centering
 \includegraphics[width=\linewidth]{C:/Users/Louise/Documents/project/final_project/figs/kochcomparison.png}
 \caption{writethiis}
@@ -123,9 +160,9 @@ Additionally, the range of the energy scale for the states is different in ~\ref
 \end{figure}
 Both due to the errors in the Python implementation and the scaling issues given by the Cottet method, another implementation was considered. The method is given by Koch in equations \ref{eq:8} and \ref{eq:9} was also simulated using Mathematica. Figure \ref{fig:graph4} shows this result, given by the blue curve, compared to the numerical result in \ref{fig:graph2} represented by the orange curve. This shows that the result given by this method is a much better match for the numerical result than the Cottet method, as the curves align almost perfectly, with differences at low energy states.
 
-In the previous graphs, it has been assumed that $n_g = 0$. This is why the graph is composed of 'steps' and isn't smooth at the beginning as with Figure~\ref{fig:graph2}. The difference is seen clearly in Figure  \ref{fig:graph4}. This appears to be a numerical limit that is pertinent to both of the analytical methods.
+In the previous graphs, it has been assumed that $n_g = 0$. This has been used to simplify the results and reduce the number of initial variables. This is why the graph is composed of 'steps' and isn't smooth at the beginning as with Figure~\ref{fig:graph2}. The difference is seen clearly in Figure  \ref{fig:graph4}. This appears to be a numerical limit that is pertinent to both of the analytical methods.
 
-\begin{figure}[!ht]
+\begin{figure}[ht]
 \centering
 \includegraphics[width=\linewidth]{C:/Users/Louise/Documents/project/final_project/figs/coupling.png}
 \caption{writethiis}
@@ -141,16 +178,16 @@ This degeneracy is only present at energies such that $E_m > E_J$. This is best 
 
 \subsection{Second Discussion}
 The analytical methods presented by Cottet and Koch both give appreciable results when compared to the numerical function, as shown in Figure \ref{fig:graph4}. They both follow the same overall shape of the curve and the important steps produced by the degenerate states are present. However, for the case where $n_g = 0$, they do not accurately represent the lower states. Neither method achieves the smooth section of the curve for the region before $E_m = E_J$. This can be rectified by making $n_g$ very small, for example setting $n_g = 10^{-10}$. This is shown in Figure \ref{fig:graph6}, where there is a smooth section. However, the due to scaling issues the numerical method remains the better alternative. This emphasises how effective and comparatively simple the numerical solution is.
-\begin{figure}[!ht]
+\begin{figure}[ht]
 \centering
 \includegraphics[width=\linewidth]{C:/Users/Louise/Documents/project/final_project/figs/compare_analytical_numerical.png}
 \caption{writethiis}
 \label{fig:graph6}
 \end{figure}
 
-\subsection{wiggly graph discussion}
+\subsection{Coupling Constant}
 
-\begin{figure}[!ht]
+\begin{figure}[ht]
 \centering
 \includegraphics[width=\linewidth]{C:/Users/Louise/Documents/project/final_project/figs/couplingcomparekoch.png}
 \caption{writethiis}
@@ -166,11 +203,17 @@ This function is shown alongside the first few states of the numerical coupling 
 
 The second region of Figure \ref{fig:graph5} to be discussed is for $10<m<15$. During this section, the curve decreases smoothly at a constant rate. This matches up to the region in Figure \ref{fig:graph1} where the graph has split into two horns but the states are not completely charge-like, which occurs around $m=15$ where $E_m = E_J$. This is likely because of the nature of the potential. It is shaped like a cosine, which means that at the very top of the potential, the effective wall between potential wells is thin, and it is much easier for the wavefunction to tunnel through the wall. Hence at this point the transmon partially behaves like a charge state because it is able to partially tunnel through the potential. When the energy $E_m$ is much higher than $E_J$, there is no longer a potential well and the transmon behaves almost completely like a charge state. The coupling between the states decreases rapidly to the point where it approaches 0.
 
-The spikey part of the graph is very interesting. The spikes aren't periodic or anything like that so I can't really say anything definite about them, take what I'm saying here with a pinch of salt. So in the energy graphs, the steps are defined by degenerate energy states given by n and -n. So the energy graph goes, n, -n, then n+1, then -(n+1) etc etc. So the spikes on this spikey graph are probably due to this. The tips/spikey bits are due to the n, -n pair where they are relatively strongly coupled. The low parts of the spikes are probably due to the n, n+1 pair. er, don't expect these states to be well coupled at all. Why? Because of science. Remember that at this point the system behaves like a charge state because you have a load of cooper pairs chilling on the superconducting island. cooper pairs are made of electrons which are negatively charged so the cooper pair has total negative charge. This is where the kicker comes in, the Coulomb effect. To go up to the next n+1 state all you have to do is add one more negative charge to a whole heap of negative charge. This means you have to overcome the Coulomb energy which says that negative charges repel each other. And the more negative charge you have kicking around in one place the harder and harder it is to add another, which is why we predict that this graph goes to 0 and it does so awesome cool job done.
+
+The final region of Figure \ref{fig:graph9}, where $m>30$ is interesting as it is composed of jagged spikes, while the average treend remains flat and approaches 0. The points are not periodic so this region would be ideal to investigate futher in order to confirm the result, and ensure that it is not due to computational errors. However, a possible reason for the jagged nature of the curve is the degenerate energy states. As discussed previously, the steps on Figure \ref{fig:graph2} are caused by degenerate states $\ket{-n}$ and $\ket{n}$. In this case, the graph of the energy  goes up in states  $\ket{n}$, $\ket{-n}$ and then $\ket{n+1}$ ,$\ket{-(n+1)}$, or something to that effect. This switching between opposite states and adjacent states may be the reason behind the jagged spikes. The tips of the spikes correspond to the relatively high coupling between the positive and negative states, while the minima are atributed to adjacent states. Coupling between adjacent states is expected to be low as energy increases, which also explains the overall trend towards 0. This is due to the Coulomb effect. In this region of high states, the transom behaves like a charge state. This is because of a excess of Cooper pairs on one side of the junction. Cooper pairs are composed of coupled electrons, which have a negative charge. This means that the total charge of the Cooper pair is also negative. In order to progress to the next  $\ket{n+1}$ state, another Cooper pair must tunnel across the junction and increase the excess. However, due to the amount of negative charge already accumulated, the Coulomb potential will repel the negative charge and energy will be required to successfully move it. As more charge accumulates, it becomes more difficult to overcome the Coulomb potential and it will require more energy to push the system into the  $\ket{n+1}$ state. This why the states have a low coupling, because it is less unlikey that the system will have enough energy to move up adjacent states.
+
 
 \section{Conclusion}
-Multiple numerical and analyitical techniques were implented to invesitgate the high energy staters of a transmon. The numerical method showed that the transmon, when excited to high energy states, resemled a charge state, and combined wit!ht the analytical method shows that there are degenerate states for n and -n. Comparing the different results for all of the methods explored the numerical method gives the best results. With these results, experimental experiments can be taken to explore what the transmon looks like experimentally. This will also allow the validity of the models used in this investigation to be confirmed.
+Multiple numerical and analyitical techniques were implented to invesitgate the high energy staters of a transmon. The numerical method showed that the transmon, when excited to high energy states, resemled a charge state, and combined witht the analytical method shows that there are degenerate states for n and -n. Comparing the different results for all of the methods explored the numerical method gives the best results. With these results, experimental experiments can be taken to explore what the transmon looks like experimentally. This will also allow the validity of the models used in this investigation to be confirmed.
 When implementing the analytical techniques it was found that there were errors in the programming languages so care must be taken to select the correct language for the task.
+
+\bibliography{references}
+\bibliographystyle{ieeetr}
+\appendix
 
 \end{document}
 
