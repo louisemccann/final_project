@@ -54,7 +54,7 @@ As mentioned in the introduction, a Cooper Pair Box is a qubit which utilises th
 \begin{equation} \label{eq:1}
 E_C =  \frac{(2e)^2}{2C_\Sigma}
 \end{equation}
-where $C_\Sigma$ is the total capacitance of the box. $E_C$ can also be thought of as the energy required to move one Cooper pair across the junction. We can also consider a charge operator, $\boldsymbol{\hat{n}}$, which is associated with the excess number of cooper pairs on the island. The eigenstates of this operator are such that
+where $C_\Sigma$ is the total capacitance of the box. $E_C$ can also be thoug!ht of as the energy required to move one Cooper pair across the junction. We can also consider a charge operator, $\boldsymbol{\hat{n}}$, which is associated with the excess number of cooper pairs on the island. The eigenstates of this operator are such that
 \begin{equation} \label{eq:2}
 \boldsymbol{\hat{n}}\ket{\boldsymbol{n}} = \boldsymbol{n}\ket{\boldsymbol{n}},  \boldsymbol{n} \in \mathbb{Z}
 \end{equation}
@@ -92,14 +92,14 @@ E_m(n_g) = E_C \mathcal{M}_A (2[n_g + k(m,n_g)],-\frac{E_J}{2E_C})
 \section{Results}
 \subsection{Initial Results}
 
-\begin{figure}[ht]
+\begin{figure}[!ht]
 \centering
 \includegraphics[width=\linewidth]{C:/Users/Louise/Documents/project/final_project/figs/matrixplotofeigenvectors.png}
 \caption{This figure s}
 \label{fig:graph1}
 \end{figure}
 The first step in the investigation is to simulate the transmon in the charge basis, as given by equation~\ref{eq:6}. This was done because it is suspected that the transmon represents a charge state when it is excited to higher energy states. The matrix representation of \ref{eq:6} can be diagonalised. The resulting eigenvectors represent the wavefunctions of the system. Therefore, the eigenvalues give the corresponding energy for each state. The probability function for each state is given by the absolute wavefunction squared. The probability functions are shown in Figure~\ref{fig:graph1}. The intensity of the colour spectrum shows the probability of the system being in that state. The code was written in the Python programming language. As the matrix is tridiagonal, functions from the scipy library for scientific computing were used. Mathematica wasn't considered at this point due to the difficulty in creating tridiagonal matrices in this language.
-\begin{figure}[ht]
+\begin{figure}[!ht]
 \centering
 \includegraphics[width=\linewidth]{C:/Users/Louise/Documents/project/final_project/figs/plotofeigenvalues.png}
 \caption{This figure s}
@@ -107,7 +107,7 @@ The first step in the investigation is to simulate the transmon in the charge ba
 \end{figure}
 Following the eigenvector study shown in Figure \ref{fig:graph1}, the eigenvalues were explored to show different results from the same data. This allowed us to see how the energy of the system changes and why this occurs. This is displayed in Figure \ref{fig:graph2}. The y-axis represents the energy of state $m$ proportional to the energy of the junction, $E_J$ to provide a relative scale.
 
-\begin{figure}[ht]
+\begin{figure}[!ht]
 \centering
 \includegraphics[width=\linewidth]{C:/Users/Louise/Documents/project/final_project/figs/comparepythonmathematicang0.png}
 \caption{writethiis}
@@ -115,7 +115,7 @@ Following the eigenvector study shown in Figure \ref{fig:graph1}, the eigenvalue
 \end{figure}
 Next, the energy of the states was simulated using the analytical approach using Mathieu functions. This was done to ensure the numerical matrix method worked, and also to compare different techniques and sources. First, the treatment by Cottet which is given in equation~\ref{eq:7}. Again the scipy library was used as it contained functions for the characteristic value of the Mathieu function. However, the resulting graph didn't look as expected, which is because it doesn't match the result given by the numerical result in Figure \ref{fig:graph2}. In Figure \ref{fig:graph3} the blue line representing the Python simulation shows anomalies around $25 < m < 50$. In addition, the function used did not accept non-integer parameters as arguments, so some of the accuracies were lost in converting floating point numbers into integers. As a result, the Mathematica technical computing language was used instead for the same method from \ref{eq:7}. As shown in Figure~\ref{fig:graph3}, this gave a result which was much more in keeping with what was expected. showing that the Python result is unphysical and the anomalies are due to the programming used. Going forward, where the methods involving Mathieu equations are written with Mathematica.
 Additionally, the range of the energy scale for the states is different in ~\ref{fig:graph3} when compared to the numerical result in ~\ref{fig:graph2}. This could be a simple error of the computation being a factor out of scale, however, it is the same between Mathematica and Python, so the error is likely due to the function used given by equation  ~\ref{eq:7}.
-\begin{figure}[ht]
+\begin{figure}[!ht]
 \centering
 \includegraphics[width=\linewidth]{C:/Users/Louise/Documents/project/final_project/figs/kochcomparison.png}
 \caption{writethiis}
@@ -125,7 +125,7 @@ Both due to the errors in the Python implementation and the scaling issues given
 
 In the previous graphs, it has been assumed that $n_g = 0$. This is why the graph is composed of 'steps' and isn't smooth at the beginning as with Figure~\ref{fig:graph2}. The difference is seen clearly in Figure  \ref{fig:graph4}. This appears to be a numerical limit that is pertinent to both of the analytical methods.
 
-\begin{figure}[ht]
+\begin{figure}[!ht]
 \centering
 \includegraphics[width=\linewidth]{C:/Users/Louise/Documents/project/final_project/figs/coupling.png}
 \caption{writethiis}
@@ -141,7 +141,7 @@ This degeneracy is only present at energies such that $E_m > E_J$. This is best 
 
 \subsection{Second Discussion}
 The analytical methods presented by Cottet and Koch both give appreciable results when compared to the numerical function, as shown in Figure \ref{fig:graph4}. They both follow the same overall shape of the curve and the important steps produced by the degenerate states are present. However, for the case where $n_g = 0$, they do not accurately represent the lower states. Neither method achieves the smooth section of the curve for the region before $E_m = E_J$. This can be rectified by making $n_g$ very small, for example setting $n_g = 10^{-10}$. This is shown in Figure \ref{fig:graph6}, where there is a smooth section. However, the due to scaling issues the numerical method remains the better alternative. This emphasises how effective and comparatively simple the numerical solution is.
-\begin{figure}[ht]
+\begin{figure}[!ht]
 \centering
 \includegraphics[width=\linewidth]{C:/Users/Louise/Documents/project/final_project/figs/compare_analytical_numerical.png}
 \caption{writethiis}
@@ -150,7 +150,7 @@ The analytical methods presented by Cottet and Koch both give appreciable result
 
 \subsection{wiggly graph discussion}
 
-\begin{figure}[ht]
+\begin{figure}[!ht]
 \centering
 \includegraphics[width=\linewidth]{C:/Users/Louise/Documents/project/final_project/figs/couplingcomparekoch.png}
 \caption{writethiis}
@@ -166,8 +166,11 @@ This function is shown alongside the first few states of the numerical coupling 
 
 The second region of Figure \ref{fig:graph5} to be discussed is for $10<m<15$. During this section, the curve decreases smoothly at a constant rate. This matches up to the region in Figure \ref{fig:graph1} where the graph has split into two horns but the states are not completely charge-like, which occurs around $m=15$ where $E_m = E_J$. This is likely because of the nature of the potential. It is shaped like a cosine, which means that at the very top of the potential, the effective wall between potential wells is thin, and it is much easier for the wavefunction to tunnel through the wall. Hence at this point the transmon partially behaves like a charge state because it is able to partially tunnel through the potential. When the energy $E_m$ is much higher than $E_J$, there is no longer a potential well and the transmon behaves almost completely like a charge state. The coupling between the states decreases rapidly to the point where it approaches 0.
 
-\section{Conclusion}
+The spikey part of the graph is very interesting. The spikes aren't periodic or anything like that so I can't really say anything definite about them, take what I'm saying here with a pinch of salt. So in the energy graphs, the steps are defined by degenerate energy states given by n and -n. So the energy graph goes, n, -n, then n+1, then -(n+1) etc etc. So the spikes on this spikey graph are probably due to this. The tips/spikey bits are due to the n, -n pair where they are relatively strongly coupled. The low parts of the spikes are probably due to the n, n+1 pair. er, don't expect these states to be well coupled at all. Why? Because of science. Remember that at this point the system behaves like a charge state because you have a load of cooper pairs chilling on the superconducting island. cooper pairs are made of electrons which are negatively charged so the cooper pair has total negative charge. This is where the kicker comes in, the Coulomb effect. To go up to the next n+1 state all you have to do is add one more negative charge to a whole heap of negative charge. This means you have to overcome the Coulomb energy which says that negative charges repel each other. And the more negative charge you have kicking around in one place the harder and harder it is to add another, which is why we predict that this graph goes to 0 and it does so awesome cool job done.
 
+\section{Conclusion}
+Multiple numerical and analyitical techniques were implented to invesitgate the high energy staters of a transmon. The numerical method showed that the transmon, when excited to high energy states, resemled a charge state, and combined wit!ht the analytical method shows that there are degenerate states for n and -n. Comparing the different results for all of the methods explored the numerical method gives the best results. With these results, experimental experiments can be taken to explore what the transmon looks like experimentally. This will also allow the validity of the models used in this investigation to be confirmed.
+When implementing the analytical techniques it was found that there were errors in the programming languages so care must be taken to select the correct language for the task.
 
 \end{document}
 
