@@ -6,26 +6,36 @@ import scipy.special
 import scipy.sparse
 import math
 
-s=80
-def analytical_energy(k, Ec=0.214, Ej=52, ng=0.0):
-    q = -2 * Ej / Ec
-    r = k + 1 - (k + 1) % 2 + 2 * ng * (-1) ** k
-    mat = 4 * Ec * scipy.special.mathieu_a(int(r), q)
-    return mat
+matplotlib.rcParams['figure.figsize'] = (15, 10)
+matplotlib.rcParams.update({'font.size': 22})
 
 
-def plot_analytical_energy(p_values, m_values, ej=52):
-    # plots mathematica and python analytical values
+# ---------- numerical -------------------
+def tridiagonal_matrix(x, Ec=0.214, Ej=52, ng=0.0):
+    # where x is the size of the matrix
+    # x should be even
+    # allows for negative values of n
+    diag = [4.0 * Ec * (m - ng) ** 2 for m in range(int(-x / 2), int(x / 2))]
+    off_diag = [-Ej / 2] *(x-1)
+    vals, vectors = scipy.linalg.eigh_tridiagonal(diag, off_diag)
+    vals = np.real(vals)
+    return vals, vectors
+
+
+
+def plot_eigenvalues(values, ej=52):
     #matplotlib.rcParams['figure.figsize'] = (15, 10)
-    plt.plot(np.real(p_values) / ej, label='Python')
-    plt.plot(m_values / ej, label='Mathematica')
+    plt.plot(np.real(values)[:40] / ej, color='orange')
     plt.xlabel("Energy State, m")
     plt.ylabel("$E_m / E_J$")
-    plt.legend()
+    #plt.savefig("figs/plot_of_eigenvalues.png")
+    #plt.show()
 
 
-ana = np.array([analytical_energy(i, ng=0) for i in np.arange(0, s)])
-mathematica = np.loadtxt("data_ng_0.dat", dtype=float)
-plot_analytical_energy(ana, mathematica)
-plt.savefig("figs/comparepythonmathematica.png")
+s = 80
+simple_vals, simple_vectors = tridiagonal_matrix(s)
+plot_eigenvalues(simple_vals)
+t = np.loadtxt("data2.dat")[:40]
+plt.plot(t/52)
+plt.savefig('figs/kochcomparison.png', Transparent=True)
 plt.show()
