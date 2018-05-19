@@ -6,40 +6,26 @@ import scipy.special
 import scipy.sparse
 import math
 
-
-# ---------- numerical -------------------
-def tridiagonal_matrix(x, Ec=0.214, Ej=52, ng=0.0):
-    # where x is the size of the matrix
-    # x should be even
-    # allows for negative values of n
-    diag = [4.0 * Ec * (m - ng) ** 2 for m in range(int(-x / 2), int(x / 2) + 1)]
-    off_diag = [-Ej / 2] * (x)
-    vals, vectors = scipy.linalg.eigh_tridiagonal(diag, off_diag)
-    vals = np.real(vals)
-    return vals, vectors
+s=80
+def analytical_energy(k, Ec=0.214, Ej=52, ng=0.0):
+    q = -2 * Ej / Ec
+    r = k + 1 - (k + 1) % 2 + 2 * ng * (-1) ** k
+    mat = 4 * Ec * scipy.special.mathieu_a(int(r), q)
+    return mat
 
 
-def plot_eigenvector(vector, m):
-    # create a heatmap plot of eigenvectors
-    matplotlib.rcParams['figure.figsize'] = (15, 10)
-    plt.imshow(abs(vector), extent=[0, m / 2, -m / 2, m / 2], aspect='auto')
-    plt.colorbar(orientation='vertical')
-    plt.xlabel("Energy State, m")
-    plt.ylabel("Charge State, n")
-    plt.savefig("figs/matrixplotofeigenvectors.png")
-    plt.show()
-
-
-def plot_eigenvalues(values, ej=52):
-    matplotlib.rcParams['figure.figsize'] = (15, 10)
-    plt.plot(np.real(values[:40]) / ej)
+def plot_analytical_energy(p_values, m_values, ej=52):
+    # plots mathematica and python analytical values
+    #matplotlib.rcParams['figure.figsize'] = (15, 10)
+    plt.plot(np.real(p_values) / ej, label='Python')
+    plt.plot(m_values / ej, label='Mathematica')
     plt.xlabel("Energy State, m")
     plt.ylabel("$E_m / E_J$")
-    plt.savefig("figs/plot_of_eigenvalues.png")
-    plt.show()
+    plt.legend()
 
 
-s = 80
-simple_vals, simple_vectors = tridiagonal_matrix(s)
-plot_eigenvector(simple_vectors, m=s)
-plot_eigenvalues(simple_vals)
+ana = np.array([analytical_energy(i, ng=0) for i in np.arange(0, s)])
+mathematica = np.loadtxt("data_ng_0.dat", dtype=float)
+plot_analytical_energy(ana, mathematica)
+plt.savefig("figs/comparepythonmathematica.png")
+plt.show()
