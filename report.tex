@@ -18,6 +18,13 @@
 \usepackage{caption}
 \usepackage{subcaption}
 
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor = black
+}
+
 \newcommand*{\hatH}{\hat{\mathcal{H}}}
 \graphicspath{C:/Users/Louise/Documents/project/final_project/figs/}
 
@@ -213,11 +220,17 @@ The fact that the system behaves like a charge state goes some way to explaining
 
 \section{Conclusion}
 The high energy states of the transmon have been investigated computationally in order to help illuminate new experimental work on this system~\cite{lescanneDynamicsOffresonantlyPumped2018}. Results show that the high energy states strongly resemble charge states with degeneracies arising for the charge states $\ket{n}$ and $\ket{-n}$. The low coupling of adjacent states, which represents the difficulty of moving between the states, was found to reinforce the theory that the system represents a charge state. Both a numerical approach, based upon looking at the Hamiltonian of the system in the charge basis, and analytical approaches, based upon the work by Cottet~\cite{cottetImplementationQuantumBit2002} and Koch~\cite{kochChargeinsensitiveQubitDesign2007} were used. When implementing the analytical techniques, it was found that there were errors arising from the particular programming language used, emphasising the importance of a careful choice of programming language. Comparison of the numerical and analytical techniques found that there were broadly in agreement. However, the numerical approach was preferred due to the better treatment over a wide range of energy states, while the analytic approaches were approximations which worked primarily on a specific range of parameters including the gate charge, $n_g$. These results, if confirmed by experiment, will allow a good understanding of the transmon using a charge state model.
+\section{Appendix}
+
+All code and revisions are documented at \url{https://github.com/louisemccann/final_project.git}
 
 \clearpage
 \bibliography{references}
 \bibliographystyle{ieeetr}
 \appendix
+
+
+
 
 \end{document}
 
