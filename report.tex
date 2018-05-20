@@ -29,7 +29,7 @@
 Supervisor: Eran Ginossar
 \end{center}
 \begin{abstract}
-
+Multiple numeric and analytical techniques were used to investigate the high energy states of a Cooper Pair Box based on a Josephson Junction. It is found that for high states the system behaves like a charge state. Several methods are implemented, particularly those from Koch and Cottet. These methods are compared and the validity of the results is discussed.
 \end{abstract}
 
 \clearpage
@@ -178,6 +178,7 @@ This degeneracy is only present at energies such that $E_m > E_J$. This is best 
 
 \subsection{Second Discussion}
 The analytical methods presented by Cottet and Koch both give appreciable results when compared to the numerical function, as shown in Figure \ref{fig:graph4}. They both follow the same overall shape of the curve and the important steps produced by the degenerate states are present. However, for the case where $n_g = 0$, they do not accurately represent the lower states. Neither method achieves the smooth section of the curve for the region before $E_m = E_J$. This can be rectified by making $n_g$ very small, for example setting $n_g = 10^{-10}$. This is shown in Figure \ref{fig:graph6}, where there is a smooth section. However, the due to scaling issues the numerical method remains the better alternative. This emphasises how effective and comparatively simple the numerical solution is.
+
 \begin{figure}[ht]
 \centering
 \includegraphics[width=\linewidth]{C:/Users/Louise/Documents/project/final_project/figs/compare_analytical_numerical.png}
@@ -185,31 +186,33 @@ The analytical methods presented by Cottet and Koch both give appreciable result
 \label{fig:graph6}
 \end{figure}
 
+
+
 \subsection{Coupling Constant}
 
+The wavefunctions for the states produced by the numerical results can be used to investigate how the states are coupled relative to each other. This is displayed in Figure \ref{fig:graph5}, which shows the coupling between state $m$ and the adjacent state $m+1$. This graph can be split into 3 effectively different regions.
+
+The first region is for $m<10$. For this region the coupling between adjacent states increases, so the system can relatively easily transition between states. This is about the extent to which the transmon has been studied so far. An approximation is given by Koch as:
+\begin{equation} \label{eq:10}
+\bra{m+1}\boldsymbol{\hat{n}}\ket{m} \approx \sqrt{\frac{m+1}{2}} \bigg( \frac{E_J}{8E_C}\bigg)^{1/4}
+\end{equation}
 \begin{figure}[ht]
 \centering
 \includegraphics[width=\linewidth]{C:/Users/Louise/Documents/project/final_project/figs/couplingcomparekoch.png}
 \caption{writethiis}
 \label{fig:graph7}
 \end{figure}
-The wavefunctions for the states produced by the numerical results can be used to investigate how the states are coupled relative to each other. This is displayed in Figure \ref{fig:graph5}, which shows the coupling between state $m$ and the adjacent state $m+1$. This graph can be split into 3 effectively different regions.
-
- The first region is for $m<10$. For this region the coupling between adjacent states increases, so the system can relatively easily transition between states. This is about the extent to which the transmon has been studied so far. An approximation is given by Koch as:
-\begin{equation} \label{eq:10}
-\bra{m+1}\boldsymbol{\hat{n}}\ket{m} \approx \sqrt{\frac{m+1}{2}} \bigg( \frac{E_J}{8E_C}\bigg)^{1/4}
-\end{equation}
 This function is shown alongside the first few states of the numerical coupling constant is displayed in Figure \ref{fig:graph7}. This graph shows that for low states, the Koch approximation is a good representation for the coupling constant between adjacent energy states. However, the numerical result and the approximation diverge above $m=7$, so this means that the approximation is only relevant for these very low energy states and should not be extended.
 
 The second region of Figure \ref{fig:graph5} to be discussed is for $10<m<15$. During this section, the curve decreases smoothly at a constant rate. This matches up to the region in Figure \ref{fig:graph1} where the graph has split into two horns but the states are not completely charge-like, which occurs around $m=15$ where $E_m = E_J$. This is likely because of the nature of the potential. It is shaped like a cosine, which means that at the very top of the potential, the effective wall between potential wells is thin, and it is much easier for the wavefunction to tunnel through the wall. Hence at this point the transmon partially behaves like a charge state because it is able to partially tunnel through the potential. When the energy $E_m$ is much higher than $E_J$, there is no longer a potential well and the transmon behaves almost completely like a charge state. The coupling between the states decreases rapidly to the point where it approaches 0.
 
 
-The final region of Figure \ref{fig:graph9}, where $m>30$ is interesting as it is composed of jagged spikes, while the average treend remains flat and approaches 0. The points are not periodic so this region would be ideal to investigate futher in order to confirm the result, and ensure that it is not due to computational errors. However, a possible reason for the jagged nature of the curve is the degenerate energy states. As discussed previously, the steps on Figure \ref{fig:graph2} are caused by degenerate states $\ket{-n}$ and $\ket{n}$. In this case, the graph of the energy  goes up in states  $\ket{n}$, $\ket{-n}$ and then $\ket{n+1}$ ,$\ket{-(n+1)}$, or something to that effect. This switching between opposite states and adjacent states may be the reason behind the jagged spikes. The tips of the spikes correspond to the relatively high coupling between the positive and negative states, while the minima are atributed to adjacent states. Coupling between adjacent states is expected to be low as energy increases, which also explains the overall trend towards 0. This is due to the Coulomb effect. In this region of high states, the transom behaves like a charge state. This is because of a excess of Cooper pairs on one side of the junction. Cooper pairs are composed of coupled electrons, which have a negative charge. This means that the total charge of the Cooper pair is also negative. In order to progress to the next  $\ket{n+1}$ state, another Cooper pair must tunnel across the junction and increase the excess. However, due to the amount of negative charge already accumulated, the Coulomb potential will repel the negative charge and energy will be required to successfully move it. As more charge accumulates, it becomes more difficult to overcome the Coulomb potential and it will require more energy to push the system into the  $\ket{n+1}$ state. This why the states have a low coupling, because it is less unlikey that the system will have enough energy to move up adjacent states.
+The final region of Figure \ref{fig:graph5}, where $m>30$ is interesting as it is composed of jagged spikes, while the average treend remains flat and approaches 0. The points are not periodic so this region would be ideal to investigate futher in order to confirm the result, and ensure that it is not due to computational errors. However, a possible reason for the jagged nature of the curve is the degenerate energy states. As discussed previously, the steps on Figure \ref{fig:graph2} are caused by degenerate states $\ket{-n}$ and $\ket{n}$. In this case, the graph of the energy  goes up in states  $\ket{n}$, $\ket{-n}$ and then $\ket{n+1}$ ,$\ket{-(n+1)}$, or something to that effect. This switching between opposite states and adjacent states may be the reason behind the jagged spikes. The tips of the spikes correspond to the relatively high coupling between the positive and negative states, while the minima are atributed to adjacent states. Coupling between adjacent states is expected to be low as energy increases, which also explains the overall trend towards 0. This is due to the Coulomb effect. In this region of high states, the transom behaves like a charge state. This is because of a excess of Cooper pairs on one side of the junction. Cooper pairs are composed of coupled electrons, which have a negative charge. This means that the total charge of the Cooper pair is also negative. In order to progress to the next  $\ket{n+1}$ state, another Cooper pair must tunnel across the junction and increase the excess. However, due to the amount of negative charge already accumulated, the Coulomb potential will repel the negative charge and energy will be required to successfully move it. As more charge accumulates, it becomes more difficult to overcome the Coulomb potential and it will require more energy to push the system into the  $\ket{n+1}$ state. This why the states have a low coupling, because it is less unlikey that the system will have enough energy to move up adjacent states.
 
 
 \section{Conclusion}
-Multiple numerical and analyitical techniques were implented to invesitgate the high energy staters of a transmon. The numerical method showed that the transmon, when excited to high energy states, resemled a charge state, and combined witht the analytical method shows that there are degenerate states for n and -n. Comparing the different results for all of the methods explored the numerical method gives the best results. With these results, experimental experiments can be taken to explore what the transmon looks like experimentally. This will also allow the validity of the models used in this investigation to be confirmed.
-When implementing the analytical techniques it was found that there were errors in the programming languages so care must be taken to select the correct language for the task.
+The high energy states of the transmon have been investigated computationally in order to help illuminate new experimental work on this system. Results show that the high energy states strongly resemble charge states with degeneracies arising for the energies states $\ket{n}$ and $\ket{-n}$. The low coupling of adjacent states, which represents the difficulty of moving between the states, was found to reinforce the theory that the system represents a charge state. Both a numerical approach, based upon looking at the Hamiltonian of the system in the charge basis, and analytical approaches, based upon the work by Cottet \cite{cottetImplementationQuantumBit2002} and Koch \cite{kochChargeinsensitiveQubitDesign2007} were used. When implementing the analytical techniques it was found that there were errors arising from the particular programming language used, emphasising the importance of a careful choice of programming language. Comparison of the numerical and analytical techniques found that there were broadly in agreement. However, the numerical approach was preferred due to the better treatment over a wide range of energy states, while the analytic approaches were approximations which worked primarily on a specific range of parameters including the gate charge, $n_g$. These results, if confirmed by experiment, will allow a good understanding of the transmon using a charge state model.
+
 
 \bibliography{references}
 \bibliographystyle{ieeetr}
